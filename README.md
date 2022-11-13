@@ -9,5 +9,5 @@
 
 <img class="img" src="images/heart.jpg" alt="Supershape" style=" display: block;
     margin-left: auto;
-    margin-right: auto;" width="400" height="400">
+    margin-right: auto;" width="800" height="450">
 
