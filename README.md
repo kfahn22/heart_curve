@@ -5,7 +5,7 @@
 ## I had to edit the formula for the heart curve significantly to get a nice heart shape.
 
 
-[Link to live version]()
+<!-- [Link to live version]() -->
 
 <img class="img" src="images/heart.jpg" alt="Supershape" style=" display: block;
     margin-left: auto;
