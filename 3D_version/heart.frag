@@ -59,6 +59,12 @@ mat2 Rot(float a) {
     return mat2(c, -s, s, c);
 }
 
+// Smooth max function from The Art of Code
+float smax(float a, float b, float k) {
+    float h = clamp( (b-a) / k+0.5, 0.0 ,1.0 );
+    return mix(a, b, h) + h* (1.0-h)*k * 0.5;
+}
+
 // Spherical function modified from Daniel Shiffman
 vec2 Spherical( vec2 pos) 
 {
@@ -91,6 +97,23 @@ float Supershape2D( vec2 uv ) {
   return d -= length(q); 
 }
 
+float sdHeart( vec2 uv, float blur) {
+    float r = 0.28;  
+    //blur *= r;
+    
+    uv.x * 0.7;
+    //Take the absolute value to make it symmetrical
+    // Take square root to get nice curve
+    // smax is eliminating hard edges
+    uv.y -= smax(sqrt(abs(uv.x)) * 0.5, blur, 0.1);
+    uv.y += 0.1 + blur * 0.5;
+    
+    float d = length(uv) ;
+    //float m = S(r+blur, r-blur-0.01, d);
+    return d;
+}
+
+
 float Heart( vec2 uv) {
     vec2 q;
     //Take the absolute value to make it symmetrical
@@ -122,17 +145,11 @@ float Heart( vec2 uv) {
 }
 
 float Rotation ( vec3 p ) {
-   float d1 =  Heart( vec2( length(p.xy), p.z ));
-   float d2 =  Heart( vec2( length(p.yz), p.x ));
-   float d3 =  Heart( vec2( length(p.xz), p.y ));
-   float r = Spherical(p.yz).x;
-  //return max(d1, max(d2, d3));
-  // can change of these to get different shape possibilities
-  //return max(d2, min(d1, d3));
- // return max(d1, min(d2, d3));
-  //return min(d1, min(d2, d3));
-  //return min(d1, max(d2, d3));
-  return max(d3, min(d1, d2));
+   float d1 =  Heart( vec2( length(p.xy), p.z ) );
+   float d2 =  Heart( vec2( length(p.yz), p.x ) );
+   float d3 =  Heart( vec2( length(p.xz), p.y ) );
+   //can try different combos of the following
+   return smax(d1, max(d2, d3), 0.5);
 }
 
 float GetDist(  vec3 p ) {

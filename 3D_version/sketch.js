@@ -50,7 +50,7 @@ function setup() {
  
   let divA3 = createDiv().parent(divA).class('slider');
   let spanb = createSpan("b: ").parent(divA3);
-  bSlider = createSlider(0, 2, 1, 0.1).parent(divA3).style('width', '180px').class('mySlider');
+  bSlider = createSlider(0, 2, 1.5, 0.1).parent(divA3).style('width', '180px').class('mySlider');
   
   let divA4 = createDiv().parent(divA).class('slider');
   let spanm = createSpan("m: ").parent(divA4);
