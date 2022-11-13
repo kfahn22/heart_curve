@@ -4,7 +4,7 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
 
 I wanted to use an approach more similar to the one taken by [Daniel Shiffman](https://thecodingtrain.com), so I started with his equations and played around with the parameters until I was able to render a decent heart shape. 
 
-- [Coding TRain Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
+- [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
 ## Heart curve from Heart Curve coding challenge
 
