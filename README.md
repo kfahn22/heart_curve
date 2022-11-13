@@ -1,8 +1,8 @@
 # Rendering a heart curve with a shader in P5.js
 
-There are many ways to render a heart in a shader. Inigo Quelez has a sdf for a [heart curve](https://iquilezles.org/articles/distfunctions2d/) on his website.  Additionally, Martijn Steinrucken (The Art of Code) has a [tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) where he renders a heart shape.
+There are many ways to render a heart in a shader. Inigo Quelez has a signed distance function (SDF) for a [heart curve](https://iquilezles.org/articles/distfunctions2d/) on his website.  Additionally, Martijn Steinrucken (The Art of Code) has a [tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) where demonstrates how to render a heart shape.
 
-I wanted to use an approach more similar to the one taken by [Daniel Shiffman](https://thecodingtrain.com), so I started with his equations and played around with the formulas until I was able to render a decent heart shape. 
+I wanted to use an approach more similar to the one taken by [Daniel Shiffman](https://thecodingtrain.com), so I started with his equations and played around with the parameters until I was able to render a decent heart shape. 
 
 - [Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
