@@ -73,7 +73,7 @@ void main( )
  
      uv.y = uv.y * 0.7;
      float d = Heart( uv + vec2(0.0, 0.05));
-     float m = S(0.31, 0.29, d);
+     float m = S(0.299, 0.3, d);
      col += m * RED;
  
     gl_FragColor = vec4(col,1) ; 

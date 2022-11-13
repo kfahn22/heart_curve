@@ -4,9 +4,20 @@
 
 - [Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
-<!-- [Link to live version]() -->
-
-<img class="img" src="images/heart.jpg" alt="Supershape" style=" display: block;
+<img class="img" src="images/heart_CT.jpg" alt="Heart Curve Coding Challenge" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
+## Here is my version, which reminds me of a Smartie: 
+
+<img class="img" src="images/heart.jpg" alt="Heart" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="800" height="450">
+
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/MVZqRTY_l)
+
+## Here is the version from Martyn Steinrucken
+
+<img class="img" src="images/heart_art.jpg" alt="Art of Code Heart" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="800" height="450">
