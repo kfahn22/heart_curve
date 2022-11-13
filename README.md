@@ -1,14 +1,18 @@
-# Shader code for a heart curve
+# Rendering a heart curve with a shader in P5.js
 
-## I am trying to work out how to create a fractal flame shader. As a first step I am trying to write the code for the different variations used by Daniel Shiffman in his [FractalFlames](https://github.com/CodingTrain/FractalFlame) repo.  There are many ways to render a heart in a shader. Inigo Quelez has a sdf for a [heart curve](https://iquilezles.org/articles/distfunctions2d/) on his website.  Additionally, Martijn Steinrucken (The Art of Code) has a [tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) where he renders a heart shape. I wanted to use an approach more similar to the one taken by Daniel Shiffman, so I started with his equations and played around with the formulas until I was able to render a decent heart shape. 
+There are many ways to render a heart in a shader. Inigo Quelez has a sdf for a [heart curve](https://iquilezles.org/articles/distfunctions2d/) on his website.  Additionally, Martijn Steinrucken (The Art of Code) has a [tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) where he renders a heart shape.
+
+I wanted to use an approach more similar to the one taken by [Daniel Shiffman](https://thecodingtrain.com), so I started with his equations and played around with the formulas until I was able to render a decent heart shape. 
 
 - [Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
+
+## Heart curve from Heart Curve coding challenge
 
 <img class="img" src="images/heart_CT.jpg" alt="Heart Curve Coding Challenge" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-## Here is my version, which reminds me of a Smartie: 
+## Here is my version, which reminds me of a Smartie (candy): 
 
 <img class="img" src="images/heart.jpg" alt="Heart" style=" display: block;
     margin-left: auto;
@@ -27,3 +31,7 @@
 <img class="img" src="images/heart_iq.jpg" alt="SDF Heart" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
+
+# Motivation
+
+## I am trying to work out how to create a fractal flame shader. As a first step I am trying to write the code for the different variations used by Daniel Shiffman in his [FractalFlames](https://github.com/CodingTrain/FractalFlame) repo.  
