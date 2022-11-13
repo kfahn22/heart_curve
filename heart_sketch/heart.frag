@@ -68,15 +68,14 @@ float Heart( vec2 uv) {
 void main( )
 {
    vec2 uv = (gl_FragCoord.xy-0.5*u_resolution.xy) / u_resolution.y;
+
    // Add a background color with gradient
-    vec3 col = colorGradient(uv, PURPLE, BLUE, .4);
+    vec3 col = colorGradient(uv, PINK, RED, .5);
  
      uv.y = uv.y * 0.7;
-     float d = Heart( uv + vec2(0.0, 0.05));
-     float m = S(0.299, 0.3, d);
-     col += m * RED;
- 
-    gl_FragColor = vec4(col,1) ; 
+     float d = Heart( uv + vec2(0.0, 0.025));
+     float m = S(0.3, 0.299, d);
+     col = (1.0 - m)*col + m* PURPLE;
 }
 
 
