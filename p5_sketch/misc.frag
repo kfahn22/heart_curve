@@ -51,13 +51,14 @@ float Heart( vec2 uv) {
     float r = Spherical(uv).x;
     float theta = Spherical(uv).y;
   
-    // Formula for Heart 1
+    // Formula for Heart
     // q.x =  pow(r, 0.5)/1.5 * sin( theta * pow(r, 0.5) ) + pow(r, 0.5) /6.0 * sin (theta * pow(r, 0.5)) + pow(r, 0.5)/ 12.0  * sin( theta * pow(r, 0.5));
     // q.y = -pow(r, 2.5) * cos( theta * pow(r, 2.5) );// + r  * cos( theta * pow(r, 2.5));
     
-    // Formula for Heart 2
-    q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
-    q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
+    // Kind of looks like upside down butterfly wings
+    
+    q.x = sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
+    q.y = -pow(r, 2.5) * cos( theta * pow(r, 2.5) );
     
     float d = length(uv - q) ;
     return d;
@@ -69,8 +70,8 @@ void main( )
    // Add a background color with gradient
     vec3 col = colorGradient(uv, PURPLE, BLUE, .4);
  
-     uv.y = uv.y * 0.7;
-     float d = Heart( uv + vec2(0.0, 0.05));
+     uv.y = uv.y * 0.6;
+     float d = Heart( uv + vec2(0.0, 0.0));
      float m = S(0.31, 0.29, d);
      col += m * RED;
  

@@ -1,0 +1,23 @@
+{
+  "name": "heart_curve",
+  "version": "1.0.0",
+  "description": "shader code for a heart curve in P5.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kfahn22/heart_curve.git"
+  },
+  "keywords": [
+    "heart",
+    "shader"
+  ],
+  "author": "kfahn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kfahn22/heart_curve/issues"
+  },
+  "homepage": "https://github.com/kfahn22/heart_curve#readme"
+}

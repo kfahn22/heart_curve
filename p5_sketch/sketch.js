@@ -1,3 +1,7 @@
+// This sketch draws a heart curve using a shader.  
+// I started with formulas from Daniel Shiffman (explained n frag file) but
+// had to edit quite a bit to get a nice heart shape
+
 // a shader variable
 let theShader;
 
