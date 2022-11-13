@@ -1,6 +1,6 @@
 // I started with the formula for a heart shape from the Coding Train repo
 // https://github.com/CodingTrain/FractalFlame
-// I had to edit the parameters to get a heart shape
+// I had to edit the parameters quite a bit to get a heart shape
 
 // Formula for heart curve from https://mathworld.wolfram.com/HeartCurve.html
 // Used by Daniel Shiffman in Heart Curve coding challenge 
@@ -48,6 +48,7 @@ float Heart( vec2 uv) {
     //Take the absolute value to make it symmetrical
     uv.x = abs(uv.x);
     
+    // Get r and theta from the Spherical function
     float r = Spherical(uv).x;
     float theta = Spherical(uv).y;
   
@@ -59,6 +60,7 @@ float Heart( vec2 uv) {
     q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
     q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
     
+    // Instead of iterating through theta we find the distance from a uv to the curve
     float d = length(uv - q) ;
     return d;
 }
