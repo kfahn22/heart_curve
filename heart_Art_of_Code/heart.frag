@@ -63,11 +63,11 @@ void main( )
    vec2 uv = (gl_FragCoord.xy-0.5*u_resolution.xy) / u_resolution.y;
    vec2 m = iMouse.xy / u_resolution.xy;
    // Add a background color with gradient
-    vec3 col = colorGradient(uv, PURPLE, BLUE, .4);
+    vec3 col = colorGradient(uv, PINK, PURPLE, .4);
  
      
      float h = Heart( uv, 0.0);
-     col += h * RED;
+    col = (1.0 - h)*col + h * RED;
  
     gl_FragColor = vec4(col,1) ; 
 }
