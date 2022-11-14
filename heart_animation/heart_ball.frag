@@ -68,7 +68,6 @@ vec3 Transform(vec3 pos, float angle)
 {  
   pos.xz *= Rot(angle);
   pos.xy *= Rot(angle*.7);
-  
   return pos;
 }
 
@@ -82,17 +81,17 @@ vec4 HeartBall( vec3 ro, vec3 rd, vec3 pos, float angle)
    // Ray marching
    if (y < 1.) 
    {  
-      float x = sqrt(1. - y);  // adust for size of feather
+      float x = sqrt(1. - y);  // adjust for size of heart
       // Front intersection
       // subtract off position of sphere to remap to object coordinates
       vec3 pF = ro + rd *(t-x) - pos;  // front intersection
       pF = Transform(pF, angle);
       
-      // add polar coordinates to. wrap feather around sphere
-      //cyclindical projection
+      // add polar coordinates to. wrap heart around sphere
+      // cyclindical projection
       // [-pi, pi] in x direction &  [-1,1 in y direction
       vec2 uvF = vec2(atan(pF.x, pF.z), pF.y);  
-      uvF *= vec2(.25, .5);  // makes the feather bigger
+      uvF *= vec2(.25, .5);  // makes the heart bigger
       float f = Heart(uvF);
       // tweek the alpha separately
       vec4 front = vec4(vec3(f), S(0., .1, f)); // adjustment so don't see back from front
@@ -102,7 +101,7 @@ vec4 HeartBall( vec3 ro, vec3 rd, vec3 pos, float angle)
       vec3 pB = ro + rd * (t+x) - pos;  // back intersection
       pB = Transform(pB, angle);
       vec2 uvB = vec2(atan(pB.x, pB.z), pB.y);  //cyclindical projection
-      uvB *= vec2(.25, 0.5);  // makes the feather bigger
+      uvB *= vec2(.25, 0.5);  // makes the heart bigger
       
       float b = Heart(uvB);
       vec4 back = vec4(vec3(b), S(0., .1, b));
@@ -116,11 +115,10 @@ void main()
    // Normalized pixel coordinates (from 0 to 1)
    vec2 uv = (gl_FragCoord.xy - 0.5*u_resolution.xy)/u_resolution.y;
    
-   
    // add a mouse
    vec2 M = iMouse.xy/u_resolution.xy - .5; 
    
-   vec3 col1 = colorGradient(uv, PINK, PURPLE, 0.5);
+   vec3 col1 = colorGradient(uv, PINK, PURPLE, 0.7);
    // Add background color with gradient
    vec3 bg = vec3(.1, .2, .8)*(uv.y +.5);
    bg += vec3(.7, .4, .1)*(-uv.y+.5);
@@ -133,12 +131,12 @@ void main()
     //uv += vec2(0.-.45);  // shift back to same position
    // uv * = Rot(iTime);  
 
-   // col += Feather(uv);
+   // col += Heart(uv);
  
    vec3 ro = vec3(0,0,-3);
    vec3 rd = normalize(vec3(uv, 1));
    
-   // Create multiple heartss; divisor in the += term determines # of hearts
+   // Create multiple hearts; divisor in the += term determines # of hearts
    // use 1./50. so that i goes from [0,1]
    for (float i = 0.; i < 1.; i += 1./50.)
    {  

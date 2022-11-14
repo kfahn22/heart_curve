@@ -21,6 +21,7 @@ mat2 Rot( float a)
    float c = cos(a);
    return mat2(c, -s, s, c);
 }
+
 // Spherical function modified from Daniel Shiffman
 vec2 Spherical( vec2 pos) 
 {
@@ -29,6 +30,7 @@ vec2 Spherical( vec2 pos)
    vec2 w = vec2(r, theta);
    return w;
 }
+
 float smax(float a, float b, float k) {
     float h = clamp( (b-a) / k+0.5, 0.0 ,1.0 );
     return mix(a, b, h) + h* (1.0-h)*k * 0.5;
