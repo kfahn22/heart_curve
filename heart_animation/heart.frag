@@ -111,11 +111,11 @@ float Heart( vec2 uv) {
     }
     return col;
 }
- 
+
 void main()
 {
     // Normalized pixel coordinates (from 0 to 1)
-    vec2 uv = (gl_FragCoord.xy - .5*u_resolution.xy)/u_resolution.y;
+    vec2 uv = (gl_FragCoord.xy - 0.5*u_resolution.xy)/u_resolution.y;
     uv.y = uv.y * 0.7;
     float t = iTime*.02;
     //uv *= Rot(t);

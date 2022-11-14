@@ -7,7 +7,7 @@ let theShader;
 
 function preload(){
   // load the shader
-  theShader = loadShader('heart.vert', 'heart.frag');
+  theShader = loadShader('heart.vert', 'heart_ball.frag');
 }
 
 function setup() {
