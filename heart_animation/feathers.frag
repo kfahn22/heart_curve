@@ -1,4 +1,5 @@
-// The Art of Code Feathers in the Wind YouTube tutorial
+// Ported from The Art of Code Feathers in the Wind YouTube tutorial
+// https://www.youtube.com/watch?v=hlM940IqpRU
 
 #ifdef GL_ES
 precision mediump float;

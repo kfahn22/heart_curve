@@ -1,4 +1,5 @@
-// The Art of Code Feathers in the Wind YouTube tutorial
+// Adapted from The Art of Code Feathers in the Wind YouTube tutorial
+// https://www.youtube.com/watch?v=hlM940IqpRU
 
 #ifdef GL_ES
 precision mediump float;
@@ -73,7 +74,7 @@ vec3 Transform(vec3 pos, float angle)
 
 vec4 HeartBall( vec3 ro, vec3 rd, vec3 pos, float angle)
 {
-   vec4 col = vec4(0.);
+   vec4 col = vec4(RED, 0.0);
    float t = dot(pos - ro, rd);
    vec3 eye = ro + rd*t;
    float y = length(pos - eye);
@@ -118,7 +119,7 @@ void main()
    // add a mouse
    vec2 M = iMouse.xy/u_resolution.xy - .5; 
    
-   vec3 col1 = colorGradient(uv, PINK, PURPLE, 0.7);
+   vec3 col1 = colorGradient(uv, RED, PURPLE, 0.7);
    // Add background color with gradient
    vec3 bg = vec3(.1, .2, .8)*(uv.y +.5);
    bg += vec3(.7, .4, .1)*(-uv.y+.5);
@@ -138,7 +139,7 @@ void main()
    
    // Create multiple hearts; divisor in the += term determines # of hearts
    // use 1./50. so that i goes from [0,1]
-   for (float i = 0.; i < 1.; i += 1./50.)
+   for (float i = 0.; i < 1.; i += 1./10.)
    {  
    
        // move the hearts across screen
@@ -148,7 +149,7 @@ void main()
        // randomize the y position
        float y = mix( -2., 2., fract(sin(i*564.3)*4570.3) );
        // render objects from back to front
-       float z = mix(5., 0., i);
+       float z = mix(4., 0., i);
        float a = T+i*563.34;
        
        // Create the heart instance

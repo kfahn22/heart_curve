@@ -11,10 +11,24 @@ uniform vec2 u_resolution;
 uniform float iTime;
 uniform vec2 iMouse;
 uniform float iFrame;
+uniform float rand;
 
 #define NUM_LAYERS 4.
 #define S smoothstep
 
+// Color scheme
+// The uvs are floating point with a range of [0.0,1.0] so we normalize by dividing by 255.
+#define PURPLE vec3(83, 29,109) / 255.
+#define RED vec3(191, 18, 97) / 255.
+#define BLUE vec3(118, 212, 229) / 255.
+#define PINK vec3(236,203,217) / 255.
+
+// Function to create a color gradient
+vec3 colorGradient(vec2 uv, vec3 col1, vec3 col2, float m) {
+  float k = uv.y*m + m;
+  vec3 col = mix(col1, col2, k);
+  return col;
+}
 mat2 Rot( float a) 
 {
    float s = sin(a);
@@ -52,8 +66,10 @@ float acHeart( vec2 uv, float blur) {
     return m;
 }
 
-float Heart( vec2 uv) {
+float Heart( vec2 uv, float size) {
     vec2 q;
+    uv = uv * size;
+    uv.y = 0.7 * uv.y;
     //Take the absolute value to make it symmetrical
     uv.x = abs(uv.x);
     
@@ -70,6 +86,7 @@ float Heart( vec2 uv) {
     
     float d = length(uv - q) ;
     float s = S(0.3, 0.299, d);
+    
     return s;
 }
 
@@ -104,7 +121,7 @@ float Heart( vec2 uv) {
          // Add by .5 to keep values between -.5, .5
 
         // With my heart -- there is an artifact present
-        float heart = Heart( gv - offset- vec2(n, fract(n*56.)) +.5); 
+        float heart = Heart( gv, size);//- offset- vec2(n, fract(n*56.)) +.5); 
          //float heart = Heart( gv - offset - vec2(n, fract(n*56.)) +.5); 
         // Using Art of Code heart
         //float heart = acHeart( gv - offset - vec2(n, fract(n*56.)) +.5, 0.0 ); 
@@ -123,23 +140,34 @@ void main()
 {
     // Normalized pixel coordinates (from 0 to 1)
     vec2 uv = (gl_FragCoord.xy - 0.5*u_resolution.xy)/u_resolution.y;
-    uv.y = uv.y * 0.7;
-    float t = iTime*.02;
-    //uv *= Rot(t);
-    
+    uv *= 3.0;
     vec3 col = vec3(0.);
+    //float t = iTime*.02;
+    vec2 gv = fract(uv)-0.5;
+    vec2 id = floor(uv);
+    float n = Hash21(id);
+    float size;
+    size = fract(n*345.78);
+    //size = clamp(n*422.22, 0.0, 1.0);
+    float h;
+    // for (int y = -3; y <= 3; y++) {
+    //     for (int x = -1; x <= 1; x++) {
+    //         vec2 offset = vec2(x, y);
+    //         float n = Hash21(id + offset);
+    //         size = clamp(n*422.22, 0.0, 9.0);
+    //         //size = fract(n*345.78);
+    //             if (n > 0.5) {
+    //             h = Heart( gv + 0.1 * vec2(n, fract(n*42.)), size);
+    //             } else if (n < 0.5) {
+    //             h = Heart( gv - 0.1 * vec2(fract(n*24.), n), size);
+    //             }
+    //     }
+    // }
     
-    for (float i=0.; i<1.; i += 1./NUM_LAYERS)
-    {
-        // Depth increases with time; if hits 1 get reset
-        float depth = fract(i+t);
-        float scale = mix(20., 0.5, depth);
-        // Adjust so that repeat is not noticable
-        float fade = depth*smoothstep(1., .9, depth);  // multiply by depth 0 in back
-        col += HeartLayer(uv*scale+i*453.)*fade; // add value so layers are shifted
-    }
-    //if (gv.x>.48 || gv.y>.48) col.r = 1.;
-    //col.rg = id*.4;  Every box has a different color
+   if (gv.x > .48 || gv.y > .48) col.r = 1.;
+   
+    h = Heart( gv + 0.1 * vec2(n, fract(n*42.)), 1.0);
+    col += h*size*RED;
     
     
     gl_FragColor = vec4(col,1.0);
