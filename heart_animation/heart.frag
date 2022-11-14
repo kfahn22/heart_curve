@@ -1,4 +1,4 @@
-// Ported to P5.js from the Art of Code YouTube star field tutorial
+// Adapted to P5.js from the Art of Code YouTube star field tutorial
 // by Martijn Steinrucken aka The Art of Code/BigWings - 2020
 // YouTube: youtube.com/TheArtOfCodeIsCool
 
@@ -28,6 +28,26 @@ vec2 Spherical( vec2 pos)
    float theta = atan(pos.y, pos.x);
    vec2 w = vec2(r, theta);
    return w;
+}
+float smax(float a, float b, float k) {
+    float h = clamp( (b-a) / k+0.5, 0.0 ,1.0 );
+    return mix(a, b, h) + h* (1.0-h)*k * 0.5;
+}
+
+float acHeart( vec2 uv, float blur) {
+    float r = 0.28;  
+    //blur *= r;
+    
+    uv.x * 0.7;
+    //Take the absolute value to make it symmetrical
+    // Take square root to get nice curve
+    // smax is eliminating hard edges
+    uv.y -= smax(sqrt(abs(uv.x)) * 0.5, blur, 0.1);
+    uv.y += 0.1 + blur * 0.5;
+    
+    float d = length(uv) ;
+    float m = S(r+blur, r-blur-0.01, d);
+    return m;
 }
 
 float Heart( vec2 uv) {
@@ -80,8 +100,8 @@ float Heart( vec2 uv) {
          //  Make hearts different sizes
          float size = fract(n*345.678);
          // Add by .5 to keep values between -.5, .5
-         float heart = Heart( gv - offset - vec2(n, fract(n*56.)) +.5 );
-        vec3 color = sin(vec3(.2, .3, .9)*fract(n*2345.2)*19.)*.5+.5;
+         float heart = acHeart( gv - offset - vec2(n, fract(n*56.)) +.5, 0.0 ); // .5
+        vec3 color = sin(vec3(0.4, .001, .9)*fract(n*2345.2)*19.)*.5+.5;
         color += color*vec3(.5, .01, 1.+size); // can filter out color by change R/G/B value to 0.
         
         // Add a twinkle
