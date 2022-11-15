@@ -56,7 +56,7 @@ float Heart( vec2 uv) {
     vec2 q;
     //Take the absolute value to make it symmetrical
     uv.x = abs(uv.x);
-    
+    uv.y = uv.y * 0.5;
     float r = Spherical(uv).x;
     float theta = Spherical(uv).y;
   
@@ -104,10 +104,10 @@ float Heart( vec2 uv) {
          // Add by .5 to keep values between -.5, .5
 
         // With my heart -- there is an artifact present
-        //float heart = Heart( gv - offset- vec2(n, fract(n*56.)) +.5); 
+       float heart = Heart( gv - offset- vec2(n, fract(n*56.)) +.5); 
          //float heart = Heart( gv - offset - vec2(n, fract(n*56.)) +.5); 
         // Using Art of Code heart
-       float heart = acHeart( gv - offset - vec2(n, fract(n*56.)) +.5, 0.0 ); 
+       //float heart = acHeart( gv - offset - vec2(n, fract(n*56.)) +.5, 0.0 ); 
         vec3 color = sin(vec3(0.4, .001, .9)*fract(n*2345.2)*19.)*.5+.5;
         color += color*vec3(.5, .001, 1.+size); // can filter out color by change R/G/B value to 0.
         

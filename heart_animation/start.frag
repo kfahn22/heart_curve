@@ -1,4 +1,4 @@
-// Adapted to P5.js from the Art of Code YouTube star field tutorial
+/// Adapted to P5.js from the Art of Code YouTube star field tutorial
 // by Martijn Steinrucken aka The Art of Code/BigWings - 2020
 // YouTube: youtube.com/TheArtOfCodeIsCool
 
@@ -12,7 +12,7 @@ uniform float iTime;
 uniform vec2 iMouse;
 uniform float iFrame;
 
-#define NUM_LAYERS 1.
+#define NUM_LAYERS 4.
 #define S smoothstep
 
 mat2 Rot( float a) 
@@ -35,28 +35,13 @@ float smax(float a, float b, float k) {
     float h = clamp( (b-a) / k+0.5, 0.0 ,1.0 );
     return mix(a, b, h) + h* (1.0-h)*k * 0.5;
 }
-// Art of Code Heart
-float acHeart( vec2 uv, float blur) {
-    float r = 0.28;  
-    //blur *= r;
-    
-    uv.x * 0.7;
-    //Take the absolute value to make it symmetrical
-    // Take square root to get nice curve
-    // smax is eliminating hard edges
-    uv.y -= smax(sqrt(abs(uv.x)) * 0.5, blur, 0.1);
-    uv.y += 0.1 + blur * 0.5;
-    
-    float d = length(uv) ;
-    float m = S(r+blur, r-blur-0.01, d);
-    return m;
-}
 
+// Adapted from Daniel Shiffmans code for heart 
 float Heart( vec2 uv) {
     vec2 q;
     //Take the absolute value to make it symmetrical
     uv.x = abs(uv.x);
-    
+    uv.y = uv.y * 0.5;
     float r = Spherical(uv).x;
     float theta = Spherical(uv).y;
   
@@ -70,10 +55,10 @@ float Heart( vec2 uv) {
     
     float d = length(uv - q) ;
     float s = S(0.3, 0.299, d);
-    
     return s;
 }
 
+// pseudo-random number function from Art of Code
  float Hash21(vec2 p)
  {
   p = fract(p*vec2(123.34, 456.21));
@@ -81,13 +66,14 @@ float Heart( vec2 uv) {
   return fract(p.x*p.y);
  }
  
+ // HeartLayer function adapted from StarLayer function
  vec3 HeartLayer(vec2 uv)
  {
     vec3 col = vec3(0.);
 
     // Make boxes with (0,0) in middle
     vec2 gv = fract(uv) - 0.5;
-    //if (gv.x>.48 || gv.y>.48) col.r = 1.;
+    
     // Add Hearts
     // Add id for boxes
     vec2 id = floor(uv);
@@ -103,14 +89,10 @@ float Heart( vec2 uv) {
          //  Make hearts different sizes
          float size = fract(n*345.678);
          // Add by .5 to keep values between -.5, .5
-
-        // With my heart -- there is an artifact present
         float heart = Heart( gv - offset- vec2(n, fract(n*56.)) +.5); 
-        
-        // Using Art of Code heart
-        //float heart = acHeart( gv - offset - vec2(n, fract(n*56.)) +.5, 0.0 ); 
+       
         vec3 color = sin(vec3(0.4, .001, .9)*fract(n*2345.2)*19.)*.5+.5;
-        color += color*vec3(.5, .001, 1.); // can filter out color by change R/G/B value to 0.
+        color += color*vec3(.5, .001, 1.+size); // can filter out color by change R/G/B value to 0.
         
         // Add a twinkle
         heart *= sin(iTime*3.+n*6.2831)*.5 + 1.;
@@ -125,26 +107,21 @@ void main()
     // Normalized pixel coordinates (from 0 to 1)
     vec2 uv = (gl_FragCoord.xy - 0.5*u_resolution.xy)/u_resolution.y;
     uv.y = uv.y * 0.7;
-    float t = iTime*.12;
+    float t = iTime*.02;
     //uv *= Rot(t);
     
     vec3 col = vec3(0.);
     
-    for (float i=0.; i<6.; i += 1.)
-    //for (float i=0.; i<1.; i += 1./NUM_LAYERS)
+    for (float i=0.; i<1.; i += 1./NUM_LAYERS)
     {
         // Depth increases with time; if hits 1 get reset
-        
         float depth = fract(i+t);
         float scale = mix(20., 0.5, depth);
         // Adjust so that repeat is not noticable
         float fade = depth*smoothstep(1., .9, depth);  // multiply by depth 0 in back
         col += HeartLayer(uv*scale+i*453.)*fade; // add value so layers are shifted
-       
     }
-   
+    //if (gv.x>.48 || gv.y>.48) col.r = 1.;
     //col.rg = id*.4;  Every box has a different color
-    
-    
     gl_FragColor = vec4(col,1.0);
 }
