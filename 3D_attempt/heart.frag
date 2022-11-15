@@ -96,37 +96,26 @@ float Supershape2D( vec2 uv ) {
   q.y = rr * radius * sin(angle);
   return d -= length(q); 
 }
-// From Inigo Quelez
-//Heart - exact   (https://www.shadertoy.com/view/3tyBzV)
-float dot2( in vec2 v ) { return dot(v,v); }
-float sdHeart( vec2 p )
-{
-    p.x = abs(p.x);
 
-    if( p.y+p.x>1.0 )
-        return sqrt(dot2(p-vec2(0.25,0.75))) - sqrt(2.0)/4.0;
-    return sqrt(min(dot2(p-vec2(0.00,1.00)),
-                    dot2(p-0.5*max(p.x+p.y,0.0)))) * sign(p.x-p.y);
+// Art of Code Heart
+float acHeart( vec2 uv, float blur) {
+    float r = 0.28;  
+    //blur *= r;
+    
+    uv.x * 0.7;
+    //Take the absolute value to make it symmetrical
+    // Take square root to get nice curve
+    // smax is eliminating hard edges
+    uv.y -= smax(sqrt(abs(uv.x)) * 0.5, blur, 0.1);
+    uv.y += 0.1 + blur * 0.5;
+    
+    float d = length(uv) ;
+    //float m = S(r+blur, r-blur-0.01, d);
+    return d;
 }
 
-// float sdHeart( vec2 uv, float blur) {
-//     float r = 0.28;  
-//     //blur *= r;
-    
-//     uv.x * 0.7;
-//     //Take the absolute value to make it symmetrical
-//     // Take square root to get nice curve
-//     // smax is eliminating hard edges
-//     uv.y -= smax(sqrt(abs(uv.x)) * 0.5, blur, 0.1);
-//     uv.y += 0.1 + blur * 0.5;
-    
-//     float d = length(uv) ;
-//     //float m = S(r+blur, r-blur-0.01, d);
-//     return d;
-// }
 
-
-float Heart( vec2 uv) {
+float myHeart( vec2 uv) {
     vec2 q;
     //Take the absolute value to make it symmetrical
     uv.x = abs(uv.x);
@@ -141,8 +130,10 @@ float Heart( vec2 uv) {
   
     // Formula from Fractal Flames sketch
 
-    q.x =  radius * sin(theta * radius);
-    q.y = -radius * cos(theta * radius);
+    // q.x =  radius * sin(theta * radius);
+    // q.y = -radius * cos(theta * radius);
+    q.x =  radius * sin(theta * r);
+    q.y = -radius * cos(theta * r);
     // Formula for Heart 1
     // q.x =  pow(r, 0.5)/1.5 * sin( theta * pow(r, 0.5) ) + pow(r, 0.5) /6.0 * sin (theta * pow(r, 0.5)) + pow(r, 0.5)/ 12.0  * sin( theta * pow(r, 0.5));
     // q.y = -pow(r, 2.5) * cos( theta * pow(r, 2.5) );// + r  * cos( theta * pow(r, 2.5));
@@ -156,13 +147,14 @@ float Heart( vec2 uv) {
     return d;
 }
 
-float Rotation ( vec3 p ) {
-   float d1 =  Heart( vec2( length(p.xy), p.z ) );
-   float d2 =  Heart( vec2( length(p.yz), p.x ) );
-   float d3 =  Heart( vec2( length(p.xz), p.y ) );
-   //can try different combos of the following
-   return smax(d1, smax(d2, d3, 0.5), 0.5);
-}
+//Attempt with Art of Code heart
+// float Rotation ( vec3 p ) {
+//    float d1 =  acHeart( vec2( length(p.xy), p.z ), 0.0 );
+//    float d2 =  acHeart( vec2( length(p.yz), p.x ), 0.0 );
+//    float d3 =  acHeart( vec2( length(p.xz), p.y ), 0.0 );
+//    //can try different combos of the following
+//    return max(d1, max(d2, d3));
+// }
 
 // From Inigo Quelez
 
@@ -185,13 +177,14 @@ float sdCone( vec3 p, vec2 c, float h )
   return max(dot(c.xy,vec2(q,p.y)),-h-p.y);
 }
 
-// float Rotation ( vec3 p ) {
-//    float d1 =  Heart( vec2( length(p.xy), p.z ) );
-//    float d2 =  Heart( vec2( length(p.yz), p.x ) );
-//    float d3 =  Heart( vec2( length(p.xz), p.y ) );
-//    //can try different combos of the following
-//    return  max(d1, max(d2, d3));
-// }
+// Get an interesting 3d shape, but it is not a heart!
+float Rotation ( vec3 p ) {
+   float d1 =  myHeart( vec2( length(p.xy), p.z ) );
+   float d2 =  myHeart( vec2( length(p.yz), p.x ) );
+   float d3 =  myHeart( vec2( length(p.xz), p.y ) );
+   //can try different combos of the following
+   return  max(d1, min(d2, d3));
+}
 
 float GetDist(  vec3 p ) {
   return Rotation( p );

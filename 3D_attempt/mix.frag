@@ -109,7 +109,28 @@ float sdEllipsoid( vec3 p, vec3 r )
   return k0*(k0-1.0)/k1;
 }
 
-float sdHeart( vec2 uv) {
+float smax(float a, float b, float k) {
+    float h = clamp( (b-a) / k+0.5, 0.0 ,1.0 );
+    return mix(a, b, h) + h* (1.0-h)*k * 0.5;
+}
+
+float acHeart( vec2 uv, float blur) {
+    float r = 0.28;  
+    //blur *= r;
+    
+    //uv.x * 0.7;
+    //Take the absolute value to make it symmetrical
+    // Take square root to get nice curve
+    // smax is eliminating hard edges
+    uv.y -= smax(sqrt(abs(uv.x)) * 0.5, blur, 0.1);
+    uv.y += 0.1 + blur * 0.5;
+    
+    float d = length(uv) ;
+    return d;
+    
+}
+
+float myHeart( vec2 uv) {
     vec2 q;
     //Take the absolute value to make it symmetrical
     uv.x = abs(uv.x);
@@ -140,16 +161,20 @@ float sdHeart( vec2 uv) {
 // While I have used sphere, box, and star other SDFs can be ued
 float GetDist(vec3 p, float scale, float mv, float h) {
     float d, s;
+    mv = 0.5;
+    h = 0.5;
     // Can move the shape by subtracting a vec3()
      vec3 q = p - vec3(0.0, 0.0, 0.0);
 
       // start with a heart and mix with a ellipsoid
-       d = sdHeart(q.xz);
+      //d = myHeart(q.xz);
+      d = acHeart(q.yz, 0.0);
        // ( , d, h)
-       //d = mix( d, sdRoundBox(q, vec3(0.2, 0.05, 0.5), 0.3), mv);
-      d = mix( d, sdEllipsoid(q, vec3(0.5, h, 0.7)), mv);
-      // d = max(d, abs(p.y) - h);   
-    return d;
+      float d1 = mix( d, sdRoundBox(q, vec3(0.2, 0.3, 0.3), 0.5), mv);
+      float d2 = mix( d, sdEllipsoid(q, vec3(0.5, 0.5, 0.6)), mv);
+      //return min(d1,d2, 0.7);
+      // d = smax(d, abs(p.y) - h);   
+    return d2;
 }
 
 // Both methods are the same from this point on
