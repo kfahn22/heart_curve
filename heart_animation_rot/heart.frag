@@ -8,7 +8,6 @@
 // x = 16.0 * pow(sin(t,3.0));
 // y = 13.0 * cos(t) + 5.0 * cos(2.0 * t) + 2.0 * cos ( 3.0 * t) + cos ( 4.0 * t);
 
-
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -27,12 +26,19 @@ uniform vec2 iMouse;
 #define RED vec3(191, 18, 97) / 255.
 #define BLUE vec3(118, 212, 229) / 255.
 #define PINK vec3(236,203,217) / 255.
+#define RASPBERRY vec3(236,1,90) / 255.
 
 // Function to create a color gradient
 vec3 colorGradient(vec2 uv, vec3 col1, vec3 col2, float m) {
   float k = uv.y*m + m;
   vec3 col = mix(col1, col2, k);
   return col;
+}
+
+// Rotation matrix
+mat2 Rot(float a) {
+    float s=sin(a), c=cos(a);
+    return mat2(c, -s, s, c);
 }
 
 // Spherical function modified from Daniel Shiffman
@@ -57,10 +63,14 @@ float Heart( vec2 uv) {
     // q.y = -pow(r, 2.5) * cos( theta * pow(r, 2.5) );// + r  * cos( theta * pow(r, 2.5));
     
     // Formula for Heart 2
-    q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
-    q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
+    // q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
+    // q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
     
-  
+
+    q.x = pow(r, 0.5) * sin(theta*pow(r, 0.5)) * cos(theta*r);
+    //q.y = pow(r, 2.) * pow(abs(theta), 0.3) * pow(cos(theta), 0.5);
+    q.y = pow(r, 2.) * pow(cos(theta), 0.5);
+    
     float d = length(uv - q) ;
     return d;
 }
@@ -69,15 +79,15 @@ void main( )
 {
    vec2 uv = (gl_FragCoord.xy-0.5*u_resolution.xy) / u_resolution.y;
    // Add a background color with gradient
-    vec3 col = colorGradient(uv, PINK, RED, .5);
+    vec3 col = vec3(0);
+     uv = uv * 0.7;
 
-     uv.y = uv.y * 0.7;
-     float d = Heart( uv + vec2(0.0, 0.025));
-     float m = S(0.3, 0.299, d);
+     float d1 = Heart( uv + vec2(0.0, 0.025) );
+     float d2 = Heart( uv*Rot(PI/2.) + vec2(0.5, 0.025));
+     float m1 = S(0.3, 0.299, d1);
+     float m2 = S(0.3, 0.299, d2);
      //col = (1.0-s)*col + s*col1;
-     col = (1.0 - m)*col + m* PURPLE;
+     col = (1.0 - (m1 + m2))*col + m1 * PURPLE + m2 * RASPBERRY;
  
     gl_FragColor = vec4(col,1) ; 
 }
-
-

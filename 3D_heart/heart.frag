@@ -30,10 +30,8 @@ uniform float iFrame;
 // The uvs are floating point with a range of [0.0,1.0] so we normalize by dividing by 255.
 #define PURPLE vec3(83, 29,109) / 255.
 #define RED vec3(191, 18, 97) / 255.
-#define ORANGE vec3(251,162, 100) / 255.
-#define BLUE vec3(118, 212, 229) / 255.
-#define TEAL vec3(11, 106, 136) / 255.
 #define RASPBERRY vec3(236,1,90) / 255.
+#define PINK vec3(236,203,217) / 255.
 
 vec3 colorGradient(vec2 uv, vec3 col1, vec3 col2, float m) {
   float k = uv.y*m + m;
@@ -114,7 +112,7 @@ void main( )
     
     
     vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 0.75);
-    col = colorGradient(uv,BLUE, PURPLE, 0.75);
+    col = colorGradient(uv, PURPLE, PINK, 0.25);
   
     float d = RayMarch(ro, rd);
 
@@ -129,7 +127,7 @@ void main( )
        col += vec3(c); //very nice purple
        // col = vec3(0.5, dif*0.8, 1.0 ); // purple
        // col = vec3(0.0, 0.5*dif, dif*1.0); // aqua
-       col = c * RED;
+       col = c * RASPBERRY;
     } 
        
     col = pow(col, vec3(.4545));	// gamma correction
