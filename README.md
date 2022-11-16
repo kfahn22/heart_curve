@@ -20,8 +20,17 @@ I wanted to use an approach more similar to the one taken by [Daniel Shiffman](h
 
 - [P5 sketch](https://editor.p5js.org/kfahn/sketches/MVZqRTY_l)
 
-## Here is an animation adapted from a Starfield tutorial by Martyn Steinrucken
+## Here is a screen shot of an animation adapted from a Starfield tutorial by Martyn Steinrucken
 
+<img class="img" src="images/heart_animation.jpg" alt="Heart Animation" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="800" height="450">
+
+## Here is my first attempt at rendering a 3d heart
+
+<img class="img" src="images/3d_heart.jpg" alt="3DHeart" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="600" height="600">
 
 ## Here is the version from Martyn Steinrucken
 
