@@ -57,7 +57,7 @@ float Heart( vec2 uv) {
 
     // Adjust the height of the stars
     // Note that with a multiplier > 0.575 there are artifacts in the rendering
-    uv.y = uv.y * 0.575;
+    uv.y = uv.y * 0.57;
     float r = Spherical(uv).x;
     float theta = Spherical(uv).y;
   
@@ -108,12 +108,13 @@ float Heart( vec2 uv) {
          float size = fract(n*345.678);
          // Add by .5 to keep values between -.5, .5
         float heart = Heart( gv - offset- vec2(n, fract(n*56.)) +.5); 
-       
-        vec3 color = sin(vec3(0.6, 0.2, 0.6)*fract(n*2345.2)*19.)*.5+.5;
+        vec3 c = sin(vec3(0.6, 0.2, 0.6)*fract(n*2345.2)*19.)*.5+.5;
+       // vec3 color = clamp(sin(vec3(0.6, 0.2, 0.6)*fract(n*2345.2)*19.)*.5+.5, vec3(0.8, 0., 0.9), vec3(0.8, 0., 0.9);
+        vec3 color = clamp(c, vec3(0.9, 0.1, 0.2), vec3(0.8, 0.1, 0.6));
         //color += color*vec3(0.8*pow(size, 0.5), 0.01*pow(size, 0.5), 0.8*pow(size, 0.5)); // can filter out color by change R/G/B value to 0.
         
         // Add a twinkle
-        heart *= sin(iTime*3.+n*6.2831)*.5 + 1.;
+        //heart *= sin(iTime*3.+n*6.2831)*.5 + 1.;
         col += heart*size*color;
       }
     }
@@ -134,10 +135,10 @@ void main()
         // Depth increases with time; if hits 1 get reset
         float depth = fract(i+t);
         //float scale = mix(20., 0.5, depth);
-        float scale = mix(20., 1.0, depth);
+        float scale = mix(8., 0.5, depth);
         // Adjust so that repeat is not noticable
-        float fade = depth*smoothstep(1., .8, depth); 
-        //float fade = depth*smoothstep(1., .9, depth);  // multiply by depth 0 in back
+       float fade = depth*smoothstep(1., .8, depth); 
+       //float fade = depth*smoothstep(1., .9, depth);  // multiply by depth 0 in back
         col += HeartLayer(uv*scale+i*453.)*fade; // add value so layers are shifted
         //col += col*vec3(0.3*pow(scale, 0.1), 0.01*pow(scale, 0.13), 0.2*pow(scale, 0.1)); // can filter out color by change R/G/B value to 0.
     }

@@ -47,7 +47,8 @@ float Heart( vec2 uv) {
     vec2 q;
     //Take the absolute value to make it symmetrical
     uv.x = abs(uv.x);
-    
+    uv.y = uv.y * 0.4;
+    uv *= 5.;
     float r = Spherical(uv).x;
     float theta = Spherical(uv).y;
   
@@ -56,10 +57,14 @@ float Heart( vec2 uv) {
     // q.y = -pow(r, 2.5) * cos( theta * pow(r, 2.5) );// + r  * cos( theta * pow(r, 2.5));
     
     // Formula for Heart 2
-    q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
-    q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
+    // q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
+    // q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
     
-  
+
+    q.x = pow(r, 0.5) * sin(theta*pow(r, 0.5)) * cos(theta*r);
+    //q.y = pow(r, 2.) * pow(abs(theta), 0.3) * pow(cos(theta), 0.5);
+    q.y = pow(r, 2.) * pow(cos(theta), 0.5);
+    
     float d = length(uv - q) ;
     return d;
 }
@@ -70,7 +75,7 @@ void main( )
    // Add a background color with gradient
     vec3 col = colorGradient(uv, RED, PINK, .5);
  
-     uv.y = uv.y * 0.7;
+     
      float d = Heart( uv + vec2(0.0, 0.025));
      float m = S(0.3, 0.299, d);
      //col = (1.0-s)*col + s*col1;

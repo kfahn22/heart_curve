@@ -20,18 +20,6 @@ precision mediump float;
 #define T iTime
 #define PI 3.14159
 
-// supershape parameters
-uniform float aa;
-uniform float bb;
-uniform float rr; 
-uniform float m;  
-uniform float n1;
-uniform float n2;
-uniform float n3;
-uniform float re;  // value for red
-uniform float gr;  // value for green
-uniform float bl;  // value for blue
-
 // Pass in uniforms from the sketch.js file
 uniform vec2 u_resolution; 
 uniform float iTime;
@@ -59,77 +47,24 @@ mat2 Rot(float a) {
     return mat2(c, -s, s, c);
 }
 
-// Spherical function modified from Daniel Shiffman
-vec2 Spherical( vec2 pos) 
-{
-   float r = sqrt(pos.x*pos.x + pos.y*pos.y);
-   float theta = atan(pos.y, pos.x);
-   vec2 w = vec2(r, theta);
-   return w;
-}
-
-// From Daniel Shiffman's 2d Supershape Coding Challenge
-float superFormula(float theta) {
-  float t1 = abs((1.0/aa) * cos(m * theta / 4.0));
-  t1 = pow(t1, n2);
-  
-  float t2 = abs((1.0/bb) * sin(m * theta / 4.0));
-  t2 = pow(t2, n3);
-  
-  float t3 = t1 + t2;
-  float r = pow(t3, -1.0 / n1);
-  return r;
-}
-
-float Supershape2D( vec2 uv ) {
-  vec2 q;
-  float d = length(uv);
-  float angle = atan(uv.y, uv.x);
-  float radius = superFormula( angle );
-  q.x = rr * radius * cos(angle);
-  q.y = rr * radius * sin(angle);
-  return d -= length(q); 
-}
-
-float Heart( vec2 uv) {
-    vec2 q;
-    //Take the absolute value to make it symmetrical
-    uv.x = abs(uv.x);
-    
-    float d = length(uv);
-    float angle = atan(uv.y, uv.x);
-    float radius = superFormula( angle );
-    
-    // Get r and theta from the Spherical function
-    float r = Spherical(uv).x;
-    float theta = Spherical(uv).y;
-  
-    // Formula from Fractal Flames sketch
-
-    q.x =  radius * sin(angle * r);
-    q.y = -radius * cos(angle * r);
-    // Formula for Heart 1
-    // q.x =  pow(r, 0.5)/1.5 * sin( theta * pow(r, 0.5) ) + pow(r, 0.5) /6.0 * sin (theta * pow(r, 0.5)) + pow(r, 0.5)/ 12.0  * sin( theta * pow(r, 0.5));
-    // q.y = -pow(r, 2.5) * cos( theta * pow(r, 2.5) );// + r  * cos( theta * pow(r, 2.5));
-    
-    // Formula for Heart 2
-    // q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
-    // q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
-    
-    // Instead of iterating through theta we find the distance from a uv to the curve
-    d -= length(q) ;
-    return d;
-}
-
-float Rotation ( vec3 p ) {
-   float d1 =  Heart( vec2( length(p.xy), p.z ));
-   float d2 =  Heart( vec2( length(p.yz), p.x ));
-   float d3 =  Heart( vec2( length(p.xz), p.y ));
-  return max(d1, max(d2, d3));
+// Starting point for formulas from Inigo Quilez Youtube tutorial Making a Heart
+float Heart_3D( vec3 p ) {
+    float r = 7.0; // 15.0
+    float r1 = 20.;
+    float d = length(p) - r;
+    p.x = abs(p.x);
+    p.y = 0.9* p.y - 0.8; //1.2
+    //float k = (15.0 - abs(p.x))/r;
+    float k = (20.0 - p.x)/r1;
+    //p.y = 7.0 + p.y - p.x * sqrt(k);
+    p.y = 9.0 + 1.25 * p.y - 0.50 * p.x * sqrt(k);
+    p.z = p.z * (2.4- p.y/r1);
+    d -= length(p);
+    return d * 1.0 ;
 }
 
 float GetDist(  vec3 p ) {
-  return Rotation( p );
+  return Heart_3D( p );
 }
 
 float RayMarch(vec3 ro, vec3 rd) {
@@ -169,15 +104,16 @@ vec3 GetRayDir(vec2 uv, vec3 p, vec3 l, float z) {
 void main( )
 {
     vec2 uv = (gl_FragCoord.xy-.5*u_resolution.xy)/u_resolution.y;
+    float t = iTime * 0.001;
 	vec2 m = iMouse.xy/u_resolution.xy;
     vec3 col = vec3(0);
     
-    vec3 ro = vec3(0, 3, -3);
-    ro.yz *= Rot(-m.y*3.14+1.);
-    ro.xz *= Rot(-m.x*6.2831);
+    vec3 ro = vec3(0, 1.25, -3);
+    // ro.yz *= Rot(-m.y*3.14+1.);
+    // ro.xz *= Rot(-m.x*6.2831);
     
     
-    vec3 rd = GetRayDir(uv, ro, vec3(0,0.,0), 1.0);
+    vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 0.75);
     col = colorGradient(uv,BLUE, PURPLE, 0.75);
   
     float d = RayMarch(ro, rd);
@@ -193,7 +129,7 @@ void main( )
        col += vec3(c); //very nice purple
        // col = vec3(0.5, dif*0.8, 1.0 ); // purple
        // col = vec3(0.0, 0.5*dif, dif*1.0); // aqua
-       //col = c * RED;
+       col = c * RED;
     } 
        
     col = pow(col, vec3(.4545));	// gamma correction
