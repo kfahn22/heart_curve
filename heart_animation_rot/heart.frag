@@ -52,8 +52,11 @@ vec2 Spherical( vec2 pos)
 
 float Heart( vec2 uv) {
     vec2 q;
+   
     //Take the absolute value to make it symmetrical
+    uv *= 3.;
     uv.x = abs(uv.x);
+    uv.y = uv.y * 0.45;
     
     float r = Spherical(uv).x;
     float theta = Spherical(uv).y;
@@ -63,16 +66,25 @@ float Heart( vec2 uv) {
     // q.y = -pow(r, 2.5) * cos( theta * pow(r, 2.5) );// + r  * cos( theta * pow(r, 2.5));
     
     // Formula for Heart 2
-    // q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
-    // q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
+    q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
+    q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
     
-
-    q.x = pow(r, 0.5) * sin(theta*pow(r, 0.5)) * cos(theta*r);
-    //q.y = pow(r, 2.) * pow(abs(theta), 0.3) * pow(cos(theta), 0.5);
-    q.y = pow(r, 2.) * pow(cos(theta), 0.5);
-    
+  
     float d = length(uv - q) ;
     return d;
+}
+
+vec3 rotHeart( vec2 uv ) {
+    vec3 col = vec3(0);
+   float i = 2.;
+   float d1 = Heart(uv);
+   float m1 = S(0.299, 0.3, d1);
+   float d2 = Heart(uv*Rot(PI/i) + vec2(0.3*i, 0.3*i));
+   float m2 = S(0.299, 0.3, d2);
+   col += m1 * RED + m2 * PURPLE;
+   return col;
+
+
 }
 
 void main( )
@@ -80,14 +92,10 @@ void main( )
    vec2 uv = (gl_FragCoord.xy-0.5*u_resolution.xy) / u_resolution.y;
    // Add a background color with gradient
     vec3 col = vec3(0);
-     uv = uv * 0.7;
-
-     float d1 = Heart( uv + vec2(0.0, 0.025) );
-     float d2 = Heart( uv*Rot(PI/2.) + vec2(0.5, 0.025));
-     float m1 = S(0.3, 0.299, d1);
-     float m2 = S(0.3, 0.299, d2);
-     //col = (1.0-s)*col + s*col1;
-     col = (1.0 - (m1 + m2))*col + m1 * PURPLE + m2 * RASPBERRY;
+     
+     vec3 c = rotHeart(uv);
+     col += c;
+    
  
     gl_FragColor = vec4(col,1) ; 
 }
