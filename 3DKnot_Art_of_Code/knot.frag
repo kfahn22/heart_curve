@@ -117,6 +117,27 @@ vec3 Spherical( in vec3 pos)
    return w;
 }
 
+float Knot( vec3 p ) {
+   float beta = 0.01; // beta < PI
+   float dd = 0.0;
+   float d;
+   for (int i = 0; i < 4; i ++)
+      {
+      vec3 offset;
+      float r = 0.01 * (0.8 + 1.6 * sin(6.0 * beta));
+      float theta = 2.0 * beta;
+      float phi = 0.6 * PI * sin(12.0 * beta);
+      vec3 w = vec3(r, theta, phi);
+      offset.x = r * cos(phi) * cos(theta);
+      offset.y = r * cos(phi) * sin(theta);
+      offset.z = r * sin(phi);
+      d = sdSphere(p, 0.05);
+      dd = max(dd, d);
+      beta += 0.1;
+      }
+   return dd;
+}
+
 float sdBox(vec2 p, vec2 s) {
     p = abs(p) - s;
     return length(max(p, 0.0)) + min(max(p.x, p.y), 0.0);
@@ -140,10 +161,10 @@ float GetDist(vec3 p) {
     float d = length(cp- vec2(0.0, 0.0))-r2;
     // create ribbon like efect
     // multiply times sin(a)*0.5 + 0.5 to vary radius of torus 
-    d = sdBox(cp, vec2(0.1, 0.2*(sin(a)*0.0 + 0.0))) - 0.1; // create a ribbon-like effect
+    //d = sdBox(cp, vec2(0.1, 0.2*(sin(a)*0.0 + 0.0))) - 0.1; // create a ribbon-like effect
     //d = sdBox(cp, vec2(0.1, 0.2*(sin(a)*0.5 + 0.5))) - 0.1; // create a ribbon-like effect
-    //return d;
-    return d*0.7;
+    //return d*0.7; // adjustment to fix broken distance function
+    return d;
 }
 
 float RayMarch(vec3 ro, vec3 rd) {
