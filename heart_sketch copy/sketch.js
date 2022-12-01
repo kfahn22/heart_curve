@@ -1,14 +1,15 @@
 // This sketch draws a heart curve using a shader.  
-// This version is a port of code from The Art of Code tutorial 
-// Making a Heart in ShaderToy
+// I started with formulas from Daniel Shiffman (explained n frag file) but
+// had to edit quite a bit to get a nice heart shape
 
 // a shader variable
 let theShader;
 
 function preload(){
   // load the shader
-  theShader = loadShader('knot.vert', 'knot2.frag');
+  theShader = loadShader('heart.vert', 'heart.frag');
 }
+
 
 function setup() {
   pixelDensity(1);
@@ -16,6 +17,7 @@ function setup() {
   createCanvas(800, 450, WEBGL);
   noStroke();
 }
+
 
 function draw() {  
   background(0);
@@ -34,3 +36,4 @@ function draw() {
   rect(0,0,width, height);
   
 }
+

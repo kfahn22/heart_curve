@@ -30,10 +30,13 @@ uniform float iFrame;
 
 
 #define PURPLE vec3(146,83,161) / 255.
-#define RED vec3(191, 18, 97) / 255.
+#define RED vec3(218, 18, 14) / 255.
 #define ORANGE vec3(248,158,79) / 255.
 #define BLUE vec3(118, 212, 229) / 255.
 #define TEAL vec3(11, 106, 136) / 255.
+#define GREEN vec3(36,87,4) / 255.
+#define GREY vec3(164,167,162) / 255.
+#define GOLD vec3(181, 130, 0) /255.
 
 // Function to add color to shape using x,y,z dimensions
 vec3 colXYZ( vec3 col1, vec3 col2, vec3 col3, vec3 n)
@@ -144,33 +147,73 @@ float sdBox(vec2 p, vec2 s) {
     return length(max(p, 0.0)) + min(max(p.x, p.y), 0.0);
 }
 
-float GetDist(vec3 p) {
+float wovenTorus(vec3 pos) {
+    //p.xz *= Rot(iTime*.1);
     // torus
+    pos = abs(pos);
+    float a = atan(pos.x, pos.z);
+   
     float r1 = 1.0;
-    float r2 = 0.15;
+    float r2 = 0.1;
+    float va = 0.01;
     // Slice of the torus we are looking at 
     // Revolving a 2d circle 
-    vec2 cp = vec2(length(p.xz)-r1, p.y);
-    float a = atan(p.x, p.z);
+    vec2 cp = vec2(length(pos.xz)-r1, pos.y- va);
+    
     // multiply angle by whole number get one long knot
     // multiply by non-whole number get interconnected tori
-    float p = 7.0;
+    float p = 3.0;
+    float q = 1.0;
+    // (3,2) trefoil knot, (5,2) Solomon's seal knot, 
+    cp *= Rot(a*(p/q));  
+    
+    cp.y = abs(cp.y)- 0.2;
+   
+   // cp = abs(cp) - 0.5;
+   float d = length(cp- vec2(0.0, 0.0))-0.25;
+   
+    // create ribbon like efect
+    // multiply times sin(a)*0.5 + 0.5 to vary radius of torus 
+    //float d = sdBox(cp, vec2(0.15, 0.2*(sin(a)*0.5 + 0.5))) - 0.15; // create a ribbon-like effect
+   
+    return d;
+}
+
+float wovenTorus2(vec3 pos) {
+    //p.xz *= Rot(iTime*.1);
+    // torus
+    pos = abs(pos);
+    float a = atan(pos.x, pos.z);
+   
+    float r1 = 1.0;
+    float r2 = 0.1;
+    float va = 0.01;
+    // Slice of the torus we are looking at 
+    // Revolving a 2d circle 
+    vec2 cp = vec2(length(pos.xz)-r1, pos.y- va);
+    
+    // multiply angle by whole number get one long knot
+    // multiply by non-whole number get interconnected tori
+    float p = 5.0;
     float q = 2.0;
     // (3,2) trefoil knot, (5,2) Solomon's seal knot, 
     cp *= Rot(a*(p/q));  
+    
     cp.y = abs(cp.y)- 0.2;
    
-    // get two tori by adding & subtraction by a vec2
-    //float d = min(length(cp1-vec2(0.0, 0.4)), length(cp1-vec2(0.0, -0.4)))- r2;
-    float d = length(cp- vec2(0.0, 0.0))-r2;
-    //float d2 = length(cp2- vec2(0.0, 0.0))-r2;
-    //float d = min(d1,d2) - 0.3;
+   // cp = abs(cp) - 0.5;
+   //float d = length(cp- vec2(0.0, 0.0))-0.25;
+   
     // create ribbon like efect
     // multiply times sin(a)*0.5 + 0.5 to vary radius of torus 
-    d = sdBox(cp, vec2(0.1, 0.2*(sin(a)*0.0 + 0.0))) - 0.1; // create a ribbon-like effect
-    //d = sdBox(cp, vec2(0.1, 0.2*(sin(a)*0.5 + 0.5))) - 0.1; // create a ribbon-like effect
-    //return d*0.7; // adjustment to fix broken distance function
+    float d = sdBox(cp, vec2(0.15, 0.2*(sin(a)*0.5 + 0.5))) - 0.15; // create a ribbon-like effect
+   
     return d;
+}
+
+float GetDist( vec3 pos) {
+    return wovenTorus2(pos);
+
 }
 
 float RayMarch(vec3 ro, vec3 rd) {
@@ -178,7 +221,7 @@ float RayMarch(vec3 ro, vec3 rd) {
     
     for(int i=0; i<MAX_STEPS; i++) {
     	vec3 p = ro + rd*dO;
-        float dS = GetDist(p);
+        float dS = wovenTorus(p);
         dO += dS;
         if(dO>MAX_DIST || abs(dS)<SURF_DIST) break;
     }
@@ -211,7 +254,7 @@ vec3 GetRayDir(vec2 uv, vec3 p, vec3 l, float z) {
 // Function to create a nice background color
 vec3 Bg(vec3 rd) {
     float k = rd.y*0.5+ 0.5;
-    vec3 col = mix(ORANGE, PURPLE, k);
+    vec3 col = mix(RED, GREEN, 0.8);
     return col;
 }
 
@@ -219,16 +262,16 @@ void main()
 {
     vec2 uv = (gl_FragCoord.xy - .5*u_resolution.xy)/u_resolution.y;
 	vec2 m = iMouse.xy/u_resolution.xy;
-    vec3 col = vec3(0);
+    vec3 col = vec3(RED);
     vec3 ro = vec3(0, 3, -3);
     ro.yz *= Rot(-m.y*3.14+1.);
     ro.xz *= Rot(-m.x*6.2831);
     
    // Last parameter--lens of camera
    // Increase to zoom in
-    vec3 rd = GetRayDir(uv, ro, vec3(0,0.,0), 1.5); 
+    vec3 rd = GetRayDir(uv, ro, vec3(0,0.,0), 0.5); 
     
-    col += Bg(rd);
+    //col += Bg(rd);
 
     float d = RayMarch(ro, rd);
 
@@ -237,9 +280,9 @@ void main()
         vec3 n = GetNormal(p);
         vec3 r = reflect(rd, n);
         
-        float spec = pow(max(0.0, r.y), 25.); // add specular highlight
+        float spec = pow(max(0.0, r.y), 30.); // add specular highlight
         float dif = dot(n, normalize(vec3(1,2,3)))*.5+.5;
-        col = mix(Bg(r), vec3(dif), 0.5)+spec;
+        col = mix(GOLD, vec3(dif), 0.5)+spec;
     }
     
     col = pow(col, vec3(.4545));	// gamma correction
