@@ -19,6 +19,8 @@ uniform vec2 iMouse;
 
 #define S smoothstep
 #define PI 3.14159
+#define NUM_HEARTS 20.
+#define t iTime*0.01
 
 // Color scheme
 // The uvs are floating point with a range of [0.0,1.0] so we normalize by dividing by 255.
@@ -50,7 +52,7 @@ vec2 Spherical( vec2 pos)
    return w;
 }
 
-float Heart( vec2 uv) {
+float myHeart( vec2 uv) {
     vec2 q;
    
     //Take the absolute value to make it symmetrical
@@ -67,33 +69,103 @@ float Heart( vec2 uv) {
     
     // Formula for Heart 2
     q.x = pow(r, 0.5)/1.1 * sin( theta * pow(r, 0.5) ) *  cos (theta * pow(r, 0.5)) ;//* log( abs(theta) * pow(r, 1.0));
-    q.y = -pow(r, 3.5) * cos( theta * pow(r, 2.5) );
+    q.y = -pow(r, 2.5) * cos( theta * pow(r, 2.5) );
     
   
     float d = length(uv - q) ;
     return d;
 }
 
-vec3 rotHeart( vec2 uv ) {
-    vec3 col = vec3(0);
-   float i = 2.;
-   float d1 = Heart(uv);
-   float m1 = S(0.299, 0.3, d1);
-   float d2 = Heart(uv*Rot(PI/i) + vec2(0.3*i, 0.3*i));
-   float m2 = S(0.299, 0.3, d2);
-   col += m1 * RED + m2 * PURPLE;
-   return col;
-
-
+float smax(float a, float b, float k) {
+    float h = clamp( (b-a) / k+0.5, 0.0 ,1.0 );
+    return mix(a, b, h) + h* (1.0-h)*k * 0.5;
 }
 
+float Heart( vec2 uv, float blur) {
+    float r = 0.28;  
+    //blur *= r;
+    
+   // uv.x * 0.7;
+    //Take the absolute value to make it symmetrical
+    // Take square root to get nice curve
+    // smax is eliminating hard edges
+    uv.y -= smax(sqrt(abs(uv.x)) * 0.5, blur, 0.1);
+    uv.y += 0.1 + blur * 0.5;
+    
+    float d = length(uv) ;
+    float m = S(r+blur, r-blur-0.01, d);
+    return m;
+}
+// vec3 rotHeart( vec2 uv ) {
+//     vec3 col = vec3(0);
+//     float t = 0.7;
+//     uv.x * t;
+//     uv *= 4.0;
+//    float i = 1.;
+//    float d1 = Heart(uv - vec2(0., t/2.), 0.01);
+//    float m1 = S(0.299, 0.3, d1);
+//    //note if don't do semetric transformation will warp heart
+//    for (float i = 0; i )
+//    float d2 = Heart(uv*Rot(PI/6.) + vec2(0., -t/2.0), 0.01);
+//    float m2 = S(0.299, 0.3, d2);
+//    float d3 = Heart(uv*Rot(PI/3.) + vec2(0., -t/2.0), 0.01);
+//    float m3 = S(0.299, 0.3, d3);
+//    float d4 = Heart(uv*Rot(PI*1./2.) + vec2(0., -t/2.0), 0.01);
+//    float m4 = S(0.299, 0.3, d4);
+//    float d5 = Heart(uv*Rot(PI*2./3.) + vec2(0., -t/2.0), 0.01);
+//    float m5 = S(0.299, 0.3, d5);
+//    col += max((m1 + m3 + m5)* RED, (m2 + m4)* PURPLE);
+//    return col;
+// }
+
+// pseudo-random number function from Art of Code
+ float Hash21(vec2 p)
+ {
+  p = fract(p*vec2(123.34, 456.21));
+  p += dot(p, p+45.32);
+  return fract(p.x*p.y);
+ }
+
+ // HeartLayer function adapted from StarLayer function from Art of Code
+ vec3 HeartLayer(vec2 uv)
+ {
+    vec3 col = vec3(0.);
+    //vec3 col = DKPURPLE;
+    //col = colorGradient(uv, RED, DKPURPLE, 0.8);
+    
+    // Make boxes with (0,0) in middle
+    vec2 gv = fract(uv) - 0.5;
+    // Add Hearts
+    // Add id for boxes
+    vec2 id = floor(uv);
+    //float n = Hash21(id+offset);  // random number between 0,1
+    // Iterate through the hearts
+    for (float i=0.; i<1.; i += 1./NUM_HEARTS)
+    {
+        // Depth increases with time; if hits 1 get reset
+        float depth = fract(i+t);
+        float scale = mix(20., 0.5, depth);
+        //float scale = mix(8., 0.5, depth);
+        // Adjust so that repeat is not noticable
+       //float fade = depth*smoothstep(1., .8, depth); 
+       float fade = depth*smoothstep(1., .9, depth);  // multiply by depth 0 in back
+        col += Heart(uv*i*Rot(PI*1./i), 0.01)*fade*PURPLE; // add value so layers are shifted
+        //col += col*vec3(0.3*pow(scale, 0.1), 0.01*pow(scale, 0.13), 0.2*pow(scale, 0.1)); // can filter out color by change R/G/B value to 0.
+    }
+        
+        // Add a twinkle
+        //heart *= sin(iTime*3.+n*6.2831)*.5 + 1.;
+        //col += heart*size*color;
+        return col;
+      }
+    
 void main( )
 {
    vec2 uv = (gl_FragCoord.xy-0.5*u_resolution.xy) / u_resolution.y;
    // Add a background color with gradient
     vec3 col = vec3(0);
      
-     vec3 c = rotHeart(uv);
+     vec3 c = HeartLayer(uv);
      col += c;
     
  
