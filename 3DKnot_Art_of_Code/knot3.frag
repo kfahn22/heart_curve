@@ -147,105 +147,42 @@ float sdBox(vec2 p, vec2 s) {
     return length(max(p, 0.0)) + min(max(p.x, p.y), 0.0);
 }
 
-float TorusKnot(vec3 pos) {
+float GetDist(vec3 pos) {
     //p.xz *= Rot(iTime*.1);
     // torus
-    //pos = abs(pos);
     float a = atan(pos.x, pos.z);
-   
-    float r1 = 1.0;
-    float r2 = 0.1;
-    float va = 0.00;
-    // Slice of the torus we are looking at 
-    // Revolving a 2d circle 
-    vec2 cp = vec2(length(pos.xz)-r1, pos.y- va);
-    vec2 cp1 = cp;
-    // multiply angle by whole number get one long knot
-    // multiply by non-whole number get interconnected tori
-    float p = 3.0;
-    float q = 1.0;
-    // (3,2) trefoil knot, (5,2) Solomon's seal knot, 
-    cp *= Rot(a*(3./2.));  
-    cp1 *= Rot(a*(5./1.));  
-    cp.y = abs(cp.y)- 0.2;
-    cp1.y = abs(cp1.y)- 0.1;
-   //cp = abs(cp) - 0.5;
-   float d = length(cp- vec2(0.0, 0.0))-0.20;
-   float d1 = length(cp1- vec2(0.0, 0.0))-0.25;
-    // create ribbon like efect
-    // multiply times sin(a)*0.5 + 0.5 to vary radius of torus 
-    //d = sdBox(cp, vec2(0.15, 0.2*(sin(a)*0.5 + 0.5))) - 0.15; // create a ribbon-like effect
-   
-    return d;
-}
 
-float wovenTorus(vec3 pos) {
-    //p.xz *= Rot(iTime*.1);
-    // torus
-    pos = abs(pos);
-    float a = atan(pos.x, pos.z);
-   
     float r1 = 1.0;
-    float r2 = 0.1;
-    float va = 0.01;
+    float r2 = 0.5;
     // Slice of the torus we are looking at 
     // Revolving a 2d circle 
-    vec2 cp = vec2(length(pos.xz)-r1, pos.y- va);
-    
-    // multiply angle by whole number get one long knot
-    // multiply by non-whole number get interconnected tori
-    float p = 3.0;
-    float q = 1.0;
-    // (3,2) trefoil knot, (5,2) Solomon's seal knot, 
-    cp *= Rot(a*(p/q));  
-    
-    cp.y = abs(cp.y)- 0.2;
-   
-   // cp = abs(cp) - 0.5;
-   float d = length(cp- vec2(0.0, 0.0))-0.25;
-   
-    // create ribbon like efect
-    // multiply times sin(a)*0.5 + 0.5 to vary radius of torus 
-    //float d = sdBox(cp, vec2(0.15, 0.2*(sin(a)*0.5 + 0.5))) - 0.15; // create a ribbon-like effect
-   
-    return d;
-}
-
-float wovenTorus2(vec3 pos) {
-    //p.xz *= Rot(iTime*.1);
-    // torus
-    pos = abs(pos);
-    float a = atan(pos.x, pos.z);
-   
-    float r1 = 1.0;
-    float r2 = 0.1;
-    float va = 0.01;
-    // Slice of the torus we are looking at 
-    // Revolving a 2d circle 
-    vec2 cp = vec2(length(pos.xz)-r1, pos.y- va);
-    
+    vec2 cp = vec2(length(pos.xz)-r1, pos.y);
+    vec2 cp2 = cp;
     // multiply angle by whole number get one long knot
     // multiply by non-whole number get interconnected tori
     float p = 5.0;
     float q = 2.0;
     // (3,2) trefoil knot, (5,2) Solomon's seal knot, 
-    cp *= Rot(a*(p/q));  
-    
-    cp.y = abs(cp.y)- 0.2;
-   
+    cp *= Rot(a*(3./2.));  
+    cp2 *= Rot(a*(5./2.));  
+    cp.y = abs(cp.y)-0.1;
+    cp2.y = abs(cp2.y)- 0.1;
    // cp = abs(cp) - 0.5;
-   //float d = length(cp- vec2(0.0, 0.0))-0.25;
-   
+    // get two tori by adding & subtraction by a vec2
+   // float d = min(length(cp1-vec2(0.0, 0.4)), length(cp1-vec2(0.0, -0.4)))- r2;
+    // float d = length(cp- vec2(0.0, 0.0))-0.4;
+    // float d2 = length(cp2)-0.1;
+   // d = min(d,d2);
+   //float d2 = length(cp2- vec2(0.0, 0.0))-r2;
+   //d = mix(d,d2, 0.5) - 0.1;
     // create ribbon like efect
     // multiply times sin(a)*0.5 + 0.5 to vary radius of torus 
-    float d = sdBox(cp, vec2(0.15, 0.2*(sin(a)*0.5 + 0.5))) - 0.15; // create a ribbon-like effect
+    float d = sdBox(cp, vec2(0.11, 1.0*(sin(a)*0.5+ 0.5))) - 0.11; // create a ribbon-like effect
+    float d2 = sdBox(cp2, vec2(0.049, 1.0*(sin(a)*0.5 + 0.5))) - 0.049; // create a ribbon-like effect
    
+    d = mix(d, d2, 0.5);
+    //return d*0.7; // adjustment to fix broken distance function
     return d;
-}
-
-float GetDist( vec3 pos) {
-    return TorusKnot(pos);
-
 }
 
 float RayMarch(vec3 ro, vec3 rd) {
@@ -253,7 +190,7 @@ float RayMarch(vec3 ro, vec3 rd) {
     
     for(int i=0; i<MAX_STEPS; i++) {
     	vec3 p = ro + rd*dO;
-        float dS = TorusKnot(p);
+        float dS = GetDist(p);
         dO += dS;
         if(dO>MAX_DIST || abs(dS)<SURF_DIST) break;
     }
@@ -294,14 +231,14 @@ void main()
 {
     vec2 uv = (gl_FragCoord.xy - .5*u_resolution.xy)/u_resolution.y;
 	vec2 m = iMouse.xy/u_resolution.xy;
-    vec3 col = vec3(RED);
+    vec3 col = vec3(ORANGE);
     vec3 ro = vec3(0, 3, -3);
     ro.yz *= Rot(-m.y*3.14+1.);
     ro.xz *= Rot(-m.x*6.2831);
     
    // Last parameter--lens of camera
    // Increase to zoom in
-    vec3 rd = GetRayDir(uv, ro, vec3(0,0.,0), 0.5); 
+    vec3 rd = GetRayDir(uv, ro, vec3(0,0.,0), 1.5); 
     
     //col += Bg(rd);
 
@@ -314,7 +251,7 @@ void main()
         
         float spec = pow(max(0.0, r.y), 30.); // add specular highlight
         float dif = dot(n, normalize(vec3(1,2,3)))*.5+.5;
-        col = mix(GOLD, vec3(dif), 0.5)+spec;
+        col = mix(PURPLE, vec3(dif), 0.5)+spec;
     }
     
     col = pow(col, vec3(.4545));	// gamma correction

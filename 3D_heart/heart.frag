@@ -124,10 +124,9 @@ void main( )
         float dif = dot(n, normalize(vec3(1,2,3)))*.5+.5;
         vec3 c = vec3(dif);
          
-       col += vec3(c); //very nice purple
-       // col = vec3(0.5, dif*0.8, 1.0 ); // purple
-       // col = vec3(0.0, 0.5*dif, dif*1.0); // aqua
-       col = c * RASPBERRY;
+        float spec = pow(max(0.0, r.y), 0.5); // add specular highlight
+        col = mix(RASPBERRY, vec3(dif), 0.5);//+spec;
+      
     } 
        
     col = pow(col, vec3(.4545));	// gamma correction

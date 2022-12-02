@@ -144,14 +144,14 @@ float sdBox(vec2 p, vec2 s) {
     return length(max(p, 0.0)) + min(max(p.x, p.y), 0.0);
 }
 
-float GetDist(vec3 p) {
+float GetDist(vec3 pos) {
     // torus
     float r1 = 1.0;
     float r2 = 0.15;
     // Slice of the torus we are looking at 
     // Revolving a 2d circle 
-    vec2 cp = vec2(length(p.xz)-r1, p.y);
-    float a = atan(p.x, p.z);
+    vec2 cp = vec2(length(pos.xz)-r1, pos.y);
+    float a = atan(pos.x, pos.z);
     // multiply angle by whole number get one long knot
     // multiply by non-whole number get interconnected tori
     float p = 7.0;

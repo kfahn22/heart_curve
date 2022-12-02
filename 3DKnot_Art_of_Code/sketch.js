@@ -7,7 +7,7 @@ let theShader;
 
 function preload(){
   // load the shader
-  theShader = loadShader('knot.vert', 'knot2.frag');
+  theShader = loadShader('knot.vert', 'torusWreath.frag');
 }
 
 function setup() {
