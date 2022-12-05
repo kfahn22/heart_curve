@@ -16,13 +16,13 @@ function setup() {
 }
 
 function draw() {
-  //background();
   let c1 = color(146,83,161);
   let c2 = color(236,1,90);
   let c3 = color('#F063A4');
 
   let  col2 = setGradientL(0, 0, 400, 450, c1, c3, X_AXIS);
   let  col3 = setGradientR(400, 0, 750, 450, c3, c1, X_AXIS);
+  
   translate(width / 2, height * 3 / 4);
   noStroke(255);
   strokeWeight(2);
@@ -54,6 +54,10 @@ function draw() {
   a += 0.01;
 }
 
+function mousePressed() {
+  save('heart.jpg');
+ }
+
 function setGradientL(x, y, w, h, c1, c2, axis) {
   noFill();
 
@@ -75,11 +79,6 @@ function setGradientL(x, y, w, h, c1, c2, axis) {
     }
   }
 }
-
-
-function mousePressed() {
-  save('heart.jpg');
- }
 
 function setGradientR(x, y, w, h, c1, c2, axis) {
   noFill();
