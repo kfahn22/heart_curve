@@ -2,19 +2,24 @@
 
 There are many ways to draw a heart shape. It could be something really simple like rotating a square by PI/2 and attatching half circles to two adjacent sides.  You can also render a heart using higher order math equations.  Following [Daniel Shiffman](https://thecodingtrain.com)'s approach in his Heart Curve coding challenge, I choose the later route. I started with the equations on two different websites, and played around with the parameters until I was able to render a decent heart shape. 
 
-For reference, this is the heart curve rendered by Daniel Shiffman.
-
-- [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
-
 ## Heart curve from Heart Curve coding challenge
+
+Daniel used the following equations to render a heart curve.
+
+`const r = height/40;`  
+`const x = r * 16 * pow(sin(a), 3);`  
+`const y = -r*(13 * cos(a) - 5*cos(2*a) - 2*cos(3*a)- cos(4*a));`
 
 <img class="img" src="images/heart_CT.jpg" alt="Heart Curve Coding Challenge" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
+- [Heart curve P5 sketch] (https://editor.p5js.org/codingtrain/sketches/egvieHyt0)
+- [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
+
 ## Heart curve 1
 
-In my first version of the heart curve, the equations draw a petal shape.  We render the heart by drawing the shape and its reflection.  Equations from Heart curve equations from http://www.mathematische-basteleien.de/heart.html
+In my first version of the heart curve, the equations draw a petal shape.  I rendered the heart by drawing the shape and its reflection.  Equations for heart curve equations from http://www.mathematische-basteleien.de/heart.html
 
 `const r = 10 * pow(sin(a), 7) * pow(e, 2 * a);`  
 `const x = r * cos(a);`  

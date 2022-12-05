@@ -1,7 +1,7 @@
 // Starter code by Daniel Shiffman
+// https://editor.p5js.org/codingtrain/sketches/egvieHyt0
 // https://thecodingtrain.com/challenges/134-heart-curve
 // https://youtu.be/oUBAi9xQ2X4
-
 
 // Heart curve equations from http://www.mathematische-basteleien.de/heart.html
 
