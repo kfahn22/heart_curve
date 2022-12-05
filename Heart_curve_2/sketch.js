@@ -9,7 +9,7 @@
 
 const heart = [];
 let a = 0;
-const e = 2.71828;
+//const e = 2.71828;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -17,7 +17,6 @@ function setup() {
 
 function draw() {
   background(255, 0, 0);
-  //translate(width/2, height*3/4); // use with curve a
   translate(width / 2, height * 2 / 3);
   noStroke(255);
   strokeWeight(2);

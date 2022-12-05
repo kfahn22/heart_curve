@@ -7,8 +7,6 @@
 //https://mathworld.wolfram.com/HeartCurve.html
 
 
-//r(theta)=2-2sintheta+sintheta(sqrt(|costheta|))/(sintheta+1.4) 
-
 const heart = [];
 let a = 0;
 const e = 2.71828;
@@ -19,21 +17,25 @@ function setup() {
 
 function draw() {
   background(255, 0, 0);
-  translate(width/2, height*1/2);
+  translate(width/2, height*3/4);
   noStroke(255);
   strokeWeight(2);
   scale(-1);
   fill(150, 0, 100);
   beginShape();
   for (let v of heart) {
-    
     vertex(v.x, v.y);
   }
   endShape();
+  beginShape();
+  for (let v of heart) {
+    vertex(-v.x, v.y);
+  }
+  endShape();
 
-  const r = 300 * (sin(a)*pow(abs(cos(a)), 0.05) / (sin(a)+7/5) );//+ 2*sin(a) + 2)
-  const x =  r * cos(a);
-  const y = 1.25 * r * abs(pow(sin(a), 0.25));
+  const r =  10 * pow(sin(a), 7) * pow(e, abs(2*a));
+  const x = r * cos(a);
+  const y = r * sin(a);
   heart.push(createVector(x, y));
   
   // So that it stops
