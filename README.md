@@ -93,7 +93,3 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
 <img class="img" src="images/heart_art.jpg" alt="Art of Code Heart" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
-
-# Motivation
-
-## I am trying to work out how to create a fractal flame shader. As a first step I am trying to write the code for the different variations used by Daniel Shiffman in his [FractalFlames](https://github.com/CodingTrain/FractalFlame) repo.  
