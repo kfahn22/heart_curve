@@ -65,7 +65,7 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
 
 ## Here is my version, which reminds me of a Smartie candy: 
 
-<img class="img" src="images/heart.jpg" alt="Heart" style=" display: block;
+<img class="img" src="images/shader_heart.jpg" alt="Heart" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
