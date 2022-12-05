@@ -19,28 +19,24 @@ function setup() {
 
 function draw() {
   background(255, 0, 0);
-  translate(width/2, height*3/4);
+  translate(width/2, height*1/2);
   noStroke(255);
   strokeWeight(2);
-  
+  scale(-1);
   fill(150, 0, 100);
   beginShape();
   for (let v of heart) {
+    
     vertex(v.x, v.y);
   }
   endShape();
-  beginShape();
-  for (let v of heart) {
-    vertex(-v.x, v.y);
-  }
-  endShape();
 
-  const r = 2 - 2 * sin(a) + sin(a)*pow(abs(cos(a)), 0.5)/(sin(a)+1.4);
-  //const r = 10 * pow(sin(a), 7)* pow(e , 2*a)
-  const x = r * cos(a);
-  const y = - r * abs(sin(a));
+  //const r =  2 * sin(a) + sin(a)*pow(abs(cos(a)), 0.5)/(sin(a)+1.4);
 
-heart.push(createVector(x, y));
+  const r = 300 * (sin(a)*pow(abs(cos(a)), 0.05) / (sin(a)+7/5) );//+ 2*sin(a) + 2)
+  const x =  r * cos(a);
+  const y = 1.25 * r * abs(pow(sin(a), 0.25));
+  heart.push(createVector(x, y));
   
   // So that it stops
   if (a > PI) {
