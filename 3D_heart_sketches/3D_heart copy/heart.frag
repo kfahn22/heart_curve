@@ -19,7 +19,7 @@ precision mediump float;
 #define S smoothstep
 #define T iTime
 #define PI 3.14159
-#define e = 2.71828
+#define E = 2.71828
 
 // Pass in uniforms from the sketch.js file
 uniform vec2 u_resolution; 
@@ -59,27 +59,30 @@ vec3 Spherical( vec3 pos)
    return w;
 }
 
-float Heart(vec3 pos) {
-  float theta = atan(pos.y, pos.x);
-  float rr = 9.0 * pow(sin(theta), 7.0) * pow(e, 2.0 * theta);
+float Heart(vec2 uv) {
+  float theta = atan(uv.y, uv.x);
+  float rr = 1.0* pow(sin(theta), 7.0) * pow(2.71828, (2.0 * theta));
   return rr;
 }
 
-float Supershape3D( vec3 p, float rr, float m, float n1, float n2, float n3 ) {
-  m = 1.0;
-  n1 = 1.0;
-  n2 = 1.0;
-  n3 = 1.0;
-  float r = Spherical( p ).x;
+float Supershape3D( vec3 p) {
+  float m = 1.0;
+  float n1 = 1.0;
+  float n2 = 1.0;
+  float n3 = 1.0;
+  float r1 = 0.1;
+  float r2 = 0.1;
+  //float r = Spherical( p ).x;
   float theta = Spherical( p ).y;
   float phi = Spherical( p ).z;
-  float r1 = superFormula(phi, m, n1, n2, n3 );
-  float r2 = superFormula(theta, m, n1, n2, n3 );
+  float rr = Heart(p.xy*10.0);
+//   float r1 = superFormula(phi, m, n1, n2, n3 );
+//   float r2 = superFormula(theta, m, n1, n2, n3 );
   float d1 = rr * r1 * cos(phi) * r2 * cos(theta);
   float d2 = rr * r1 * sin(phi) * r2 * cos(theta);
   float d3 = rr * r2 * sin(theta) ;
   vec3 q = vec3(d1, d2, d3);
-  return r -= length(q);
+  return rr -= length(q);
   
  }
 
@@ -129,11 +132,11 @@ void main( )
     vec3 col = vec3(0);
     
     vec3 ro = vec3(0, 1.25, -3);
-    // ro.yz *= Rot(-m.y*3.14+1.);
-    // ro.xz *= Rot(-m.x*6.2831);
+    ro.yz *= Rot(-m.y*3.14+1.);
+    ro.xz *= Rot(-m.x*6.2831);
     
     
-    vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 0.75);
+    vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 0.1);
     col = colorGradient(uv, PURPLE, PINK, 0.25);
   
     float d = RayMarch(ro, rd);
