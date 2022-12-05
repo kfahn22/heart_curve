@@ -1,15 +1,12 @@
-// Heart Curve
-// Daniel Shiffman
+// Code base from Daniel Shiffman's Heart Curve coding challenge
 // https://thecodingtrain.com/challenges/134-heart-curve
 // https://youtu.be/oUBAi9xQ2X4
-// I ❤️ you
 
-//https://mathworld.wolfram.com/HeartCurve.html
-
+// I started with a heart curve equation from http://www.mathematische-basteleien.de/heart.htm
+// and futzed with it quite a bit
 
 const heart = [];
-let a = 0;
-const e = 2.71828;
+let a= 0;
 const Y_AXIS = 1;
 const X_AXIS = 2;
 
@@ -18,38 +15,40 @@ function setup() {
 }
 
 function draw() {
-  background(255, 0, 0);
+  //background(255, 0, 0);
   let c1 = color(146,83,161);
   let c2 = color(236,1,90);
   let c3 = color('#F063A4');
   let  col2 = setGradientL(0, 0, 400, 450, c2, c1, X_AXIS);
   let  col3 = setGradientR(400, 0, 750, 450, c1, c2, X_AXIS);
-  translate(width/2, height*6/7);
+  translate(width/2, height*3/4);
   noStroke(255);
   strokeWeight(2);
   scale(-1);
   fill('#F063A4');
+  rotate(-PI/18);
   beginShape();
   for (let v of heart) {
     vertex(v.x, v.y);
   }
   endShape();
+  rotate(PI/9);
   beginShape();
   for (let v of heart) {
     vertex(-v.x, v.y);
   }
   endShape();
 
-  const r =  10 * pow(sin(a), 7) * pow(e, abs(2*a));
-  const x = r * cos(a);
-  const y = r * sin(a);
-  heart.push(createVector(x, y));
+  if (a > PI/3) // added this constraint to eliminate weird tail at bottom of curve
+  {const r = 40 * (1-abs(a))*(1+2*abs(a)) ;
+  const x = r* cos(a/2)*sin(a);
+  const y = -r* sin(a);
+  heart.push(createVector(x, y));}
   
   // So that it stops
   if (a > PI) {
     noLoop();
   }
-
   a += 0.01;
 }
 function mousePressed() {

@@ -12,6 +12,55 @@ I wanted to use an approach more similar to the one taken by [Daniel Shiffman](h
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
+## Heart curve 1
+
+The equations draw a petal shape.  We render the heart by drawing shape and its reflection.
+
+`const r = 10 * pow(sin(a), 7) * pow(e, 2 * a);`  
+`const x = r * cos(a);`  
+`const y = -r * abs(sin(a));`
+
+<img class="img" src="images/heart_1.jpg" alt="Heart Curve 1" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="450" height="450">
+
+
+I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html)
+
+## Heart curve 2
+
+`const r = 325;`  
+`const x = -r * sin(a) * cos(a) * log(abs(a) * 0.9);`  
+`const y = -1.25 * r * pow(abs(a), 0.7) * cos(a);`
+
+<img class="img" src="images/heart_2.jpg" alt="Heart Curve 2" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="450" height="450">
+
+## Heart curve 3
+
+`const r = 450 * (sin(a)*pow(abs(cos(a)), 0.05) / (sin(a)+7/5) );`  
+`const x =  r * cos(a);`  
+`const y = 1.25 * r * abs(pow(sin(a), 0.25));`
+
+<img class="img" src="images/heart_3.jpg" alt="Heart Curve 3" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="450" height="450">
+
+## Heart curve 4
+
+// Heart curve equations from http://www.mathematische-basteleien.de/heart.htm
+
+`const r =  10 * pow(sin(a), 7) * pow(e, abs(2*a));`  
+`const x = r * cos(a);`  
+`const y = r * sin(a);`
+
+<img class="img" src="images/heart_4.jpg" alt="Heart Curve 4" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="450" height="450">
+
+# Heart curves rendered with a shader
+
 ## Here is my version, which reminds me of a Smartie (candy): 
 
 <img class="img" src="images/heart.jpg" alt="Heart" style=" display: block;

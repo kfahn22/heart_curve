@@ -3,7 +3,7 @@
 // https://youtu.be/oUBAi9xQ2X4
 
 
-// Heart curve equations from http://www.mathematische-basteleien.de/heart.htm
+// Heart curve equations from http://www.mathematische-basteleien.de/heart.html
 
 const heart = [];
 let a = 0;
