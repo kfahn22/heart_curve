@@ -1,8 +1,8 @@
 # Rendering a heart curve with a shader in P5.js
 
-There are many ways to render a heart in a shader. Inigo Quelez has a signed distance function (SDF) for a [heart curve](https://iquilezles.org/articles/distfunctions2d/) on his website.  Additionally, Martijn Steinrucken (The Art of Code) has a [tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) where demonstrates how to render a heart shape.
+There are many ways to draw a heart shape. It could be something really simple like rotating a square by PI/2 and attatching half circles to two adjacent sides.  You can also render a heart using higher order math equations.  Following [Daniel Shiffman](https://thecodingtrain.com)'s approach in his Heart Curve coding challenge, I choose the later route. I started with the equations on two different websites, and played around with the parameters until I was able to render a decent heart shape. 
 
-I wanted to use an approach more similar to the one taken by [Daniel Shiffman](https://thecodingtrain.com), so I started with his equations and played around with the parameters until I was able to render a decent heart shape. 
+For reference, this is the heart curve rendered by Daniel Shiffman.
 
 - [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
@@ -14,7 +14,7 @@ I wanted to use an approach more similar to the one taken by [Daniel Shiffman](h
 
 ## Heart curve 1
 
-The equations draw a petal shape.  We render the heart by drawing shape and its reflection.
+In my first version of the heart curve, the equations draw a petal shape.  We render the heart by drawing the shape and its reflection.  Equations from Heart curve equations from http://www.mathematische-basteleien.de/heart.html
 
 `const r = 10 * pow(sin(a), 7) * pow(e, 2 * a);`  
 `const x = r * cos(a);`  
@@ -49,11 +49,11 @@ I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathwo
 
 ## Heart curve 4
 
-// Heart curve equations from http://www.mathematische-basteleien.de/heart.htm
+// Heart curve equations adapted from http://www.mathematische-basteleien.de/heart.htm
 
-`const r =  10 * pow(sin(a), 7) * pow(e, abs(2*a));`  
-`const x = r * cos(a);`  
-`const y = r * sin(a);`
+`const r = 40 * (1-abs(a))*(1+2*abs(a));`  
+`const x = r* cos(a/2)*sin(a);`  
+`const y = -r* sin(a);`
 
 <img class="img" src="images/heart_4.jpg" alt="Heart Curve 4" style=" display: block;
     margin-left: auto;
@@ -61,7 +61,9 @@ I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathwo
 
 # Heart curves rendered with a shader
 
-## Here is my version, which reminds me of a Smartie (candy): 
+There are many ways to render a heart in a shader. Inigo Quelez has a signed distance function (SDF) for a [heart curve](https://iquilezles.org/articles/distfunctions2d/) on his website.  Additionally, Martijn Steinrucken (The Art of Code) has a [tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) where demonstrates how to render a heart shape.
+
+## Here is my version, which reminds me of a Smartie candy: 
 
 <img class="img" src="images/heart.jpg" alt="Heart" style=" display: block;
     margin-left: auto;
@@ -84,12 +86,6 @@ I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathwo
 ## Here is the version from Martyn Steinrucken
 
 <img class="img" src="images/heart_art.jpg" alt="Art of Code Heart" style=" display: block;
-    margin-left: auto;
-    margin-right: auto;" width="800" height="450">
-
-## Here is the version from based on SDF from Inigo Quelez
-
-<img class="img" src="images/heart_iq.jpg" alt="SDF Heart" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
