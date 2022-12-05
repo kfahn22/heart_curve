@@ -27,7 +27,7 @@ In my first version of the heart curve, the equations draw a petal shape.  I ren
 
 <img class="img" src="images/heart_1.jpg" alt="Heart Curve 1" style=" display: block;
     margin-left: auto;
-    margin-right: auto;" width="450" height="450">
+    margin-right: auto;" width="800" height="450">
 
 
 I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html)
@@ -40,7 +40,7 @@ I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathwo
 
 <img class="img" src="images/heart_2.jpg" alt="Heart Curve 2" style=" display: block;
     margin-left: auto;
-    margin-right: auto;" width="450" height="450">
+    margin-right: auto;" width="800" height="450">
 
 ## Heart curve 3
 
@@ -48,9 +48,9 @@ I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathwo
 `const x =  r * cos(a);`  
 `const y = 1.25 * r * abs(pow(sin(a), 0.25));`
 
-<img class="img" src="images/heart_3.jpg" alt="Heart Curve 3" style=" display: block;
+<img class="img" src="images/Heart_3.jpg" alt="Heart Curve 3" style=" display: block;
     margin-left: auto;
-    margin-right: auto;" width="450" height="450">
+    margin-right: auto;" width="800" height="450">
 
 ## Heart curve 4
 
@@ -62,7 +62,7 @@ I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathwo
 
 <img class="img" src="images/heart_4.jpg" alt="Heart Curve 4" style=" display: block;
     margin-left: auto;
-    margin-right: auto;" width="450" height="450">
+    margin-right: auto;" width="800" height="450">
 
 # Heart curves rendered with a shader
 
