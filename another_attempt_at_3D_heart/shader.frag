@@ -30,10 +30,13 @@ uniform float iFrame;
 
 
 #define PURPLE vec3(146,83,161) / 255.
-#define RED vec3(191, 18, 97) / 255.
+#define RED vec3(218, 18, 14) / 255.
 #define ORANGE vec3(248,158,79) / 255.
 #define BLUE vec3(118, 212, 229) / 255.
 #define TEAL vec3(11, 106, 136) / 255.
+#define GREEN vec3(36,87,4) / 255.
+#define GREY vec3(164,167,162) / 255.
+#define GOLD vec3(181, 130, 0) /255.
 
 // Function to add color to shape using x,y,z dimensions
 vec3 colXYZ( vec3 col1, vec3 col2, vec3 col3, vec3 n)
@@ -67,41 +70,6 @@ float Hash21(vec2 p) {
     return fract(p.x * p.y);
 }
 
-float SmoothNoise(vec2 uv) {
-   // lv goes from 0,1 inside each grid
-   // check out interpolation for dummies
-    vec2 lv = fract(uv);
-   
-   //vec2 lv = smoothstep(0., 1., fract(uv*10.));  // create grid of boxes 
-    vec2 id = floor(uv); // find id of each of the boxes
-     lv = lv*lv*(3.-2.*lv); 
-    
-    // get noise values for each of the corners
-    // Use mix function to join together
-    float bl = N21(id);
-    float br = N21(id+vec2(1,0));
-    float b = mix (bl, br, lv.x);
-    
-    
-    float tl = N21(id + vec2(0,1));
-    float tr = N21(id+vec2(1,1));
-    float t = mix (tl, tr, lv.x);
-    
-    return mix(b, t, lv.y);
-}
-
-float SmoothNoise2 (vec2 uv) {
-   float c = SmoothNoise(uv*4.);
-     // Layer(or octave) of noise
-    // Double frequency of noise; half the amplitude
-    c += SmoothNoise(uv*8.)*.5;
-    c += SmoothNoise(uv*16.)*.25;
-    c += SmoothNoise(uv*32.)*.125;
-    c += SmoothNoise(uv*64.)*.0625;
-    
-    return c/ 2.;  // have to normalize or could go past 1
-  
-}
 mat2 Rot(float a) {
     float s=sin(a), c=cos(a);
     return mat2(c, -s, s, c);
@@ -109,69 +77,86 @@ mat2 Rot(float a) {
 
 // function to extract polar coordinates
 // from Daniel Shiffman
-vec3 Spherical( in vec3 pos) 
+vec3 Spherical( vec3 pos) 
 {
    float r = sqrt(pos.x*pos.x + pos.y*pos.y + pos.z*pos.z);
-   float theta = atan( sqrt(pos.x*pos.x + pos.y*pos.y), pos.z);
+   float theta = pos.z/r;
    float phi = atan(pos.y, pos.x);
+   //float theta = atan( sqrt(pos.x*pos.x + pos.y*pos.y), pos.z);
    vec3 w = vec3(r, theta, phi);
    return w;
 }
 
-float Knot( vec3 p ) {
-   float beta = 0.01; // beta < PI
-   float dd = 0.0;
-   float d;
-   for (int i = 0; i < 4; i ++)
-      {
-      vec3 offset;
-      float r = 0.01 * (0.8 + 1.6 * sin(6.0 * beta));
-      float theta = 2.0 * beta;
-      float phi = 0.6 * PI * sin(12.0 * beta);
-      vec3 w = vec3(r, theta, phi);
-      offset.x = r * cos(phi) * cos(theta);
-      offset.y = r * cos(phi) * sin(theta);
-      offset.z = r * sin(phi);
-      d = length(p)-0.05;
-      dd = max(dd, d);
-      beta += 0.1;
-      }
-   return dd;
+float smax(float a, float b, float k) {
+    float h = clamp( (b-a) / k+0.5, 0.0 ,1.0 );
+    return mix(a, b, h) + h* (1.0-h)*k * 0.5;
 }
 
-float sdBox(vec2 p, vec2 s) {
-    p = abs(p) - s;
-    return length(max(p, 0.0)) + min(max(p.x, p.y), 0.0);
+vec2 Heart( vec3 pos) {
+  vec2 h;
+  float r = Spherical(pos).x;
+  float theta = Spherical(pos).z;
+ float phi = Spherical(pos).y;
+
+  h.x = 16.0 * pow(sin(phi),3.0);
+  h.y = 13.0 * cos(theta) + 5.0 * cos(2.0 * theta) + 2.0 * cos ( 3.0 * theta) + cos ( 4.0 * theta);
+//   h*0.5 + 0.5;
+  return h;
 }
 
 float GetDist(vec3 pos) {
-    // torus
-    float r1 = 1.0;
-    float r2 = 0.15;
-    // Slice of the torus we are looking at 
-    // Revolving a 2d circle 
-    vec2 cp = vec2(length(pos.xz)-r1, pos.y);
-    float a = atan(pos.x, pos.z);
-    // multiply angle by whole number get one long knot
-    // multiply by non-whole number get interconnected tori
-    float p = 7.0;
-    float q = 2.0;
-    // (3,2) trefoil knot, (5,2) Solomon's seal knot, 
-    cp *= Rot(a*(p/q));  
-    cp.y = abs(cp.y)- 0.2;
-   
-    // get two tori by adding & subtraction by a vec2
-    //float d = min(length(cp1-vec2(0.0, 0.4)), length(cp1-vec2(0.0, -0.4)))- r2;
-    float d = length(cp- vec2(0.0, 0.0))-r2;
-    //float d2 = length(cp2- vec2(0.0, 0.0))-r2;
-    //float d = min(d1,d2) - 0.3;
-    // create ribbon like efect
-    // multiply times sin(a)*0.5 + 0.5 to vary radius of torus 
-    d = sdBox(cp, vec2(0.1, 0.2*(sin(a)*0.0 + 0.0))) - 0.1; // create a ribbon-like effect
-    //d = sdBox(cp, vec2(0.1, 0.2*(sin(a)*0.5 + 0.5))) - 0.1; // create a ribbon-like effect
-    //return d*0.7; // adjustment to fix broken distance function
-    return d;
+    pos = abs(pos);
+    float rr = 0.05;
+    vec3 q;
+    float r = Spherical(pos).x;
+    float theta = Spherical(pos).y;
+    float phi = Spherical(pos).z;
+    vec2 h = Heart(pos);
+    q.x = rr * h.x * cos(phi) * h.y * cos(theta);
+    q.y = rr * h.x * sin(phi) * h.y * cos(theta);
+    q.z = rr * h.y * sin(theta);
+    r -= length(q);
+    return r;
 }
+
+// float GetDist(vec3 pos) {
+//     float a = atan(pos.y, pos.z);
+//     //p.xz *= Rot(iTime*.1);
+//     // torus
+//     pos = abs(pos);
+  
+//     float d;
+//     float r1 = 1.;
+//     float r2 = 0.15;
+//     pos.y *= 1.0;
+//     // Slice of the torus we are looking at 
+//     // Revolving a 2d circle 
+//     //vec2 cp = vec2(length(pos.xz)-r2, pos.y);//-r2);
+//     vec2 cp1 = vec2(length(pos.xz)-0.7, pos.y) - 0.3;//-r2);
+//     vec2 cp2 = vec2(length(pos.yz)-0.7, pos.x) - 0.3;//-r2);
+//     vec2 cp3 = vec2(length(pos.xy)-0.7, pos.z) - 0.3;//-r2);
+//     // multiply angle by whole number get one long knot
+//     // multiply by non-whole number get interconnected tori
+//     float p = 3.0;
+//     float q = 2.0;
+//     float wr = 0.0; // adds an extra torus
+//     // (3,2) trefoil knot, (5,2) Solomon's seal knot, 
+//     cp1 *= Rot(a*(p/q));  
+//     cp2 *= Rot(a*(p/q));  
+//     cp3 *= Rot(a*(p/q));  
+//     cp1.x = abs(cp1.x+wr)-0.00;
+//     cp2.y = abs(cp2.y+wr)-0.00;
+//     cp3.y = abs(cp3.y+wr)-0.00;
+//    // cp = abs(cp) - 0.5;
+//     // get two tori by adding & subtraction by a vec2
+//    // float d = min(length(cp1-vec2(0.0, 0.4)), length(cp1-vec2(0.0, -0.4)))- r2;
+//     float d1 = length(cp1-vec2(0.0, 0.0))-0.05;
+//     float d2 = length(cp2-vec2(0.0, 0.0))-0.05;
+//     float d3 = length(cp3-vec2(0.0, 0.0))-0.05;
+//     d = min(d3, min(d1,d2));
+  
+//     return d*.9;
+// }
 
 float RayMarch(vec3 ro, vec3 rd) {
 	float dO=0.;
@@ -211,7 +196,7 @@ vec3 GetRayDir(vec2 uv, vec3 p, vec3 l, float z) {
 // Function to create a nice background color
 vec3 Bg(vec3 rd) {
     float k = rd.y*0.5+ 0.5;
-    vec3 col = mix(ORANGE, PURPLE, k);
+    vec3 col = mix(RED, GREEN, 0.8);
     return col;
 }
 
@@ -219,16 +204,16 @@ void main()
 {
     vec2 uv = (gl_FragCoord.xy - .5*u_resolution.xy)/u_resolution.y;
 	vec2 m = iMouse.xy/u_resolution.xy;
-    vec3 col = vec3(0);
+    vec3 col = vec3(ORANGE);
     vec3 ro = vec3(0, 3, -3);
     ro.yz *= Rot(-m.y*3.14+1.);
     ro.xz *= Rot(-m.x*6.2831);
     
    // Last parameter--lens of camera
    // Increase to zoom in
-    vec3 rd = GetRayDir(uv, ro, vec3(0,0.,0), 1.5); 
+    vec3 rd = GetRayDir(uv, ro, vec3(0,0.,0), 10.); 
     
-    col += Bg(rd);
+    //col += Bg(rd);
 
     float d = RayMarch(ro, rd);
 
@@ -237,9 +222,9 @@ void main()
         vec3 n = GetNormal(p);
         vec3 r = reflect(rd, n);
         
-        float spec = pow(max(0.0, r.y), 25.); // add specular highlight
+        float spec = pow(max(0.0, r.y), 30.); // add specular highlight
         float dif = dot(n, normalize(vec3(1,2,3)))*.5+.5;
-        col = mix(Bg(r), vec3(dif), 0.5)+spec;
+        col = mix(PURPLE, vec3(dif), 0.5)+spec;
     }
     
     col = pow(col, vec3(.4545));	// gamma correction
