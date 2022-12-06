@@ -65,29 +65,42 @@ float Heart(vec2 uv) {
   return rr;
 }
 
-float Supershape3D( vec3 p) {
-  float m = 1.0;
-  float n1 = 1.0;
-  float n2 = 1.0;
-  float n3 = 1.0;
+float Heart3D( vec3 p) {
+  vec3 q;
+  float rr = 1.0;
   float r1 = 0.1;
   float r2 = 0.1;
-  //float r = Spherical( p ).x;
-  float theta = Spherical( p ).y;
-  float phi = Spherical( p ).z;
-  float rr = Heart(p.xy*10.0);
-//   float r1 = superFormula(phi, m, n1, n2, n3 );
-//   float r2 = superFormula(theta, m, n1, n2, n3 );
+  float theta = p.z/length(p);
+  float phi = atan(p.y, p.x);
   float d1 = rr * r1 * cos(phi) * r2 * cos(theta);
   float d2 = rr * r1 * sin(phi) * r2 * cos(theta);
   float d3 = rr * r2 * sin(theta) ;
-  vec3 q = vec3(d1, d2, d3);
-  return rr -= length(q);
+  q = vec3(d1, d2, d3);
+  float d = length(q);
+  return d;
   
  }
 
+// float Heart3D( vec3 p) {
+//   vec3 q;
+//   float rr = 1.0;
+//   //p.x = abs(p.x);
+//   float r = length(p.xy);
+//   float theta = p.z/length(p);
+//   float phi = atan(p.y, p.x);
+//   float r1 = r * sin(phi) * cos(phi) * log(abs(phi) * 0.9);
+//   float r2 = 1.25 * r * pow(abs(phi), 0.7) * cos(phi);
+//   float d1 = rr * r1 * cos(phi) * r2 * cos(theta);
+//   float d2 = rr * r1 * sin(phi) * r2 * cos(theta);
+//   float d3 = rr * r2 * sin(theta) ;
+//   q = vec3(d1, d2, d3);
+//   //float d = length(p - q);
+//   float d = length(p-q);
+//   return d;
+//  }
+
 float GetDist(  vec3 p ) {
-  return Supershape3D( p );
+  return Heart3D( p );
 }
 
 float RayMarch(vec3 ro, vec3 rd) {
@@ -131,12 +144,12 @@ void main( )
 	vec2 m = iMouse.xy/u_resolution.xy;
     vec3 col = vec3(0);
     
-    vec3 ro = vec3(0, 1.25, -3);
+    vec3 ro = vec3(0, 3, -3);
     ro.yz *= Rot(-m.y*3.14+1.);
     ro.xz *= Rot(-m.x*6.2831);
     
     
-    vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 0.1);
+    vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 0.5);
     col = colorGradient(uv, PURPLE, PINK, 0.25);
   
     float d = RayMarch(ro, rd);
@@ -150,10 +163,10 @@ void main( )
         vec3 c = vec3(dif);
          
         float spec = pow(max(0.0, r.y), 0.5); // add specular highlight
-        col = mix(RASPBERRY, vec3(dif), 0.5);//+spec;
+       col = mix(RASPBERRY, vec3(dif), 0.5);//+spec;
       
     } 
-       
+
     col = pow(col, vec3(.4545));	// gamma correction
     
     gl_FragColor = vec4(col,1.0);

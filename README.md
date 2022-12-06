@@ -8,7 +8,7 @@ Daniel used the following equations to render a heart curve.
 
 `const r = height/40;`  
 `const x = r * 16 * pow(sin(a), 3);`  
-`const y = -r*(13 * cos(a) - 5*cos(2*a) - 2*cos(3*a)- cos(4*a));`
+`const y = -r*(13 * cos(a) - 5*cos(2*a) - 2*cos(3*a)- cos(4*a)`
 
 <img class="img" src="images/heart_CT.jpg" alt="Heart Curve Coding Challenge" style=" display: block;
     margin-left: auto;
