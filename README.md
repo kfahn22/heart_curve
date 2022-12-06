@@ -54,6 +54,7 @@ I adapted the equations for heart curves 3 and 4 from [MathWorld](https://mathwo
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
+
 ## Heart curve 4
 
 `const r = 2 - 2 * sin(a) + sin(a)*(pow(abs(cos(a)), 0.5)/(sin(a) + 1.4)`  
