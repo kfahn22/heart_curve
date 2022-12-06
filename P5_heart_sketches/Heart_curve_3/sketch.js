@@ -1,8 +1,11 @@
-// Base code from Daniel Shiffman's Heart Curve Coding Challenge
+// Heart Curve
+// Daniel Shiffman
 // https://thecodingtrain.com/challenges/134-heart-curve
-// https://youtu.be/oUBAi9xQ2X4
 
-// Heart curve formula adapted from https://mathworld.wolfram.com/HeartCurve.html
+
+//x	=	sintcostln|t|	
+//y	=	|t|^(0.5)(cost),	
+//https://mathworld.wolfram.com/HeartCurve.html
 
 const heart = [];
 let a = 0;
@@ -10,44 +13,46 @@ const Y_AXIS = 1;
 const X_AXIS = 2;
 
 function setup() {
-  createCanvas(800, 450);
+  createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background(255, 0, 0);
+  // Set a gradient background color
   let c1 = color(146,83,161);
-  let c2 = color(236,1,90);
+  let c2 = color('#A42963');
   let c3 = color('#F063A4');
-
-  let  col2 = setGradientL(0, 0, 400, 450, c1, c3, X_AXIS);
-  let  col3 = setGradientR(400, 0, 750, 450, c3, c1, X_AXIS);
-  translate(width/2, height*3/4);
+  let  col2 = setGradientL(0, 0, 400, 450, c2, c3, X_AXIS);
+  let  col3 = setGradientR(400, 0, 750, 450, c3, c2, X_AXIS);
+  
+  translate(width / 2, height * 2 / 3);
   noStroke(255);
   strokeWeight(2);
-  scale(-1);
+
   fill('#70327E');
   beginShape();
   for (let v of heart) {
     vertex(v.x, v.y);
   }
   endShape();
+  beginShape();
+  for (let v of heart) {
+    vertex(-v.x, v.y);
+  }
+  endShape();
 
-  const r = 450 * (sin(a)*pow(abs(cos(a)), 0.05) / (sin(a)+7/5) );
-  const x =  r * cos(a);
-  const y = 1.25 * r * abs(pow(sin(a), 0.25));
+  // Heart curve fomula adjusted from mathworld
+  const r = 325;
+  const x = -r * sin(a) * cos(a) * log(abs(a) * 0.9);
+  const y = -1.25 * r * pow(abs(a), 0.7) * cos(a);
   heart.push(createVector(x, y));
-  
-  // So that it stops
-  if (a > PI) {
+
+  // We stop at PI/2 b/c the curve contains on for a > PI/2
+  if (a > PI / 2) {
     noLoop();
   }
+
   a += 0.01;
 }
-
-function mousePressed() {
-  save('heart.jpg');
- }
-
 function setGradientL(x, y, w, h, c1, c2, axis) {
   noFill();
 
@@ -91,3 +96,7 @@ function setGradientR(x, y, w, h, c1, c2, axis) {
     }
   }
 }
+
+function mousePressed() {
+  save('heart.jpg');
+ }

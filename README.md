@@ -30,29 +30,7 @@ In my first version of the heart curve, the equations draw a petal shape.  I ren
     margin-right: auto;" width="800" height="450">
 
 
-I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html)
-
 ## Heart curve 2
-
-`const r = 325;`  
-`const x = -r * sin(a) * cos(a) * log(abs(a) * 0.9);`  
-`const y = -1.25 * r * pow(abs(a), 0.7) * cos(a);`
-
-<img class="img" src="images/heart_2.jpg" alt="Heart Curve 2" style=" display: block;
-    margin-left: auto;
-    margin-right: auto;" width="800" height="450">
-
-## Heart curve 3
-
-`const r = 450 * (sin(a)*pow(abs(cos(a)), 0.05) / (sin(a)+7/5) );`  
-`const x =  r * cos(a);`  
-`const y = 1.25 * r * abs(pow(sin(a), 0.25));`
-
-<img class="img" src="images/Heart_3.jpg" alt="Heart Curve 3" style=" display: block;
-    margin-left: auto;
-    margin-right: auto;" width="800" height="450">
-
-## Heart curve 4
 
 The heart curve equations for version four are adapted from http://www.mathematische-basteleien.de/heart.htm.
 
@@ -63,6 +41,29 @@ The heart curve equations for version four are adapted from http://www.mathemati
 <img class="img" src="images/heart_4.jpg" alt="Heart Curve 4" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
+
+I adapted the equations for heart curves 3 and 4 from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html)
+
+## Heart curve 3
+
+`const r = 325;`  
+`const x = -r * sin(a) * cos(a) * log(abs(a) * 0.9);`  
+`const y = -1.25 * r * pow(abs(a), 0.7) * cos(a);`
+
+<img class="img" src="images/heart_2.jpg" alt="Heart Curve 2" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="800" height="450">
+
+## Heart curve 4
+
+`const r = 450 * (sin(a)*pow(abs(cos(a)), 0.05) / (sin(a)+7/5) );`  
+`const x =  r * cos(a);`  
+`const y = 1.25 * r * abs(pow(sin(a), 0.25));`
+
+<img class="img" src="images/Heart_3.jpg" alt="Heart Curve 3" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="800" height="450">
+
 
 # Heart curves rendered with a shader
 
