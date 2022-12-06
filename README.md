@@ -54,7 +54,7 @@ I adapted the equations for heart curves 2 and 3 from [MathWorld](https://mathwo
 
 ## Heart curve 4
 
-// Heart curve equations adapted from http://www.mathematische-basteleien.de/heart.htm
+The heart curve equations for version four are adapted from http://www.mathematische-basteleien.de/heart.htm.
 
 `const r = 40 * (1-abs(a))*(1+2*abs(a));`  
 `const x = r* cos(a/2)*sin(a);`  
