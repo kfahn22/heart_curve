@@ -56,9 +56,9 @@ I adapted the equations for heart curves 3 and 4 from [MathWorld](https://mathwo
 
 ## Heart curve 4
 
-`const r = 450 * (sin(a)*pow(abs(cos(a)), 0.05) / (sin(a)+7/5) );`  
-`const x =  r * cos(a);`  
-`const y = 1.25 * r * abs(pow(sin(a), 0.25));`
+`const r = 2 - 2 * sin(a) + sin(a)*(pow(abs(cos(a)), 0.5)/(sin(a) + 1.4)`  
+`const x = r * cos(a);`  
+`const y = r * sin(a);`
 
 <img class="img" src="images/heart_4.jpg" alt="Heart Curve 3" style=" display: block;
     margin-left: auto;
