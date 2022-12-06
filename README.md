@@ -1,4 +1,4 @@
-# Rendering a heart curve with a shader in P5.js
+# Rendering a heart curve in P5.js
 
 There are many ways to draw a heart shape. It could be something really simple like rotating a square by PI/2 and attatching half circles to two adjacent sides.  You can also render a heart using higher order math equations.  Following [Daniel Shiffman](https://thecodingtrain.com)'s approach in his Heart Curve coding challenge, I choose the later route. I started with the equations on two different websites, and played around with the parameters until I was able to render a decent heart shape. 
 
