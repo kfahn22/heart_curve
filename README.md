@@ -50,7 +50,7 @@ I adapted the equations for heart curves 3 and 4 from [MathWorld](https://mathwo
 `const x = -r * sin(a) * cos(a) * log(abs(a) * 0.9);`  
 `const y = -1.25 * r * pow(abs(a), 0.7) * cos(a);`
 
-<img class="img" src="images/heart_3.jpg" alt="Heart Curve 3" style=" display: block;
+<img class="img" src="images/Heart_3.jpg" alt="Heart Curve 3" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
