@@ -60,7 +60,7 @@ I adapted the equations for heart curves 3 and 4 from [MathWorld](https://mathwo
 `const x =  r * cos(a);`  
 `const y = 1.25 * r * abs(pow(sin(a), 0.25));`
 
-<img class="img" src="images/Heart_4.jpg" alt="Heart Curve 3" style=" display: block;
+<img class="img" src="images/heart_4.jpg" alt="Heart Curve 3" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
