@@ -60,23 +60,27 @@ vec3 Spherical( vec3 pos)
 }
 
 float Heart(vec2 uv) {
-  float theta = atan(uv.y, uv.x);
-  float rr = 1.0* pow(sin(theta), 7.0) * pow(2.71828, (2.0 * theta));
+  float a = 0.0;
+  float rr;
+  for (float a = 0.0; a < PI; a += 0.01)
+  {
+  rr = 1.0* pow(sin(a), 7.0) * pow(2.71828, (2.0 * a));
+  }
   return rr;
 }
 
 float Heart3D( vec3 p) {
   vec3 q;
-  float rr = 1.0;
-  float r1 = 0.1;
-  float r2 = 0.1;
+  float rr = Heart(p.xy);
+  float r1 = 1.;
+  float r2 = 1.;
   float theta = p.z/length(p);
   float phi = atan(p.y, p.x);
   float d1 = rr * r1 * cos(phi) * r2 * cos(theta);
   float d2 = rr * r1 * sin(phi) * r2 * cos(theta);
   float d3 = rr * r2 * sin(theta) ;
   q = vec3(d1, d2, d3);
-  float d = length(q);
+  float d = length(p-q);
   return d;
   
  }
