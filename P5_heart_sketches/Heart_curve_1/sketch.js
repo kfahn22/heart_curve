@@ -13,6 +13,7 @@ const X_AXIS = 2;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
 }
 
 function draw() {
