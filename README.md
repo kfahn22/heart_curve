@@ -97,7 +97,7 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
     margin-left: auto;
     margin-right: auto;" width="600" height="600">
 
-## Here is the version from [Making a Heart in ShaderToy tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) by The Art of Code (Martyn Steinrucken)
+## Here is the version from [Making a Heart in ShaderToy](https://www.youtube.com/watch?v=dXyPOLf2MbU) tutorial by The Art of Code (Martyn Steinrucken)
 
 <img class="img" src="images/heart_art.jpg" alt="Art of Code Heart" style=" display: block;
     margin-left: auto;
