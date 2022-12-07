@@ -18,9 +18,9 @@ Daniel used the following equations to render a heart curve.
 - [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
 
-The equations for the first and second heart curves are from [Mathematische-Basteleien](http://www.mathematische-basteleien.de/heart.html), while the equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html).  All four hearts are added as classes in the p5 sketch.  Heart curve 3 is the heart that will render and the others are commented out. 
+The equations for the first and second heart curves are from [Mathematische-Basteleien](http://www.mathematische-basteleien.de/heart.html), while the equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html).  All four hearts are added as classes in this [p5 sketch](https://editor.p5js.org/kfahn/sketches/xNdg0UUI6).  Heart curve 3 is the heart that will render and the others are commented out. 
 
-[P5 sketch](https://editor.p5js.org/kfahn/sketches/xNdg0UUI6)
+[Live Version](https://kfahn22.github.io/heart_curve/)
 
 ## Heart curve 1
 
