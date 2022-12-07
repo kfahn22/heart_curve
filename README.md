@@ -86,7 +86,7 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/MVZqRTY_l)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/15Wj_4RYR)
 - [Code](https://github.com/kfahn22/heart_curve/tree/main/shader_heart_sketches/heart_sketch)
 
 ## Here is the version from [Making a Heart in ShaderToy](https://www.youtube.com/watch?v=dXyPOLf2MbU) tutorial by The Art of Code.
