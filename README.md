@@ -1,6 +1,6 @@
 # Rendering a heart curve in P5.js
 
-There are many ways to draw a heart shape. It could be something really simple like rotating a square by PI/2 and attatching half circles to two adjacent sides.  You can also render a heart using higher order math equations.  Following [Daniel Shiffman](https://thecodingtrain.com)'s approach in his Heart Curve coding challenge, I choose the later route. I started with the equations on two different websites, and played around with the parameters until I was able to render a decent heart shape. 
+There are many ways to draw a heart shape. It could be something really simple like rotating a square by PI/4 and attatching half circles to two adjacent sides.  You can also render a heart using higher order math equations.  Following [Daniel Shiffman](https://thecodingtrain.com)'s approach in his Heart Curve coding challenge, I choose the later route. I utilized the equations from two different websites.  In some cases, I had to tinker a bit with the parameters until I was able to render a decent heart shape. 
 
 ## Heart curve from Heart Curve coding challenge
 
@@ -17,9 +17,12 @@ Daniel used the following equations to render a heart curve.
 - [Heart curve P5 sketch] (https://editor.p5js.org/codingtrain/sketches/egvieHyt0)
 - [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
+
+The equations for the first and second heart are from [Mathematische-Basteleien](http://www.mathematische-basteleien.de/heart.html).
+
 ## Heart curve 1
 
-In my first version of the heart curve, the equations draw a petal shape.  I rendered the heart by drawing the shape and its reflection.  Equations for heart curve equations from http://www.mathematische-basteleien.de/heart.html
+In the first heart curve, the equations draw a petal shape.  I rendered the heart by drawing the shape and its reflection.  
 
 `const r = 10 * pow(sin(a), 7) * pow(e, 2 * a);`  
 `const x = r * cos(a);`  
@@ -32,8 +35,6 @@ In my first version of the heart curve, the equations draw a petal shape.  I ren
 
 ## Heart curve 2
 
-The heart curve equations for version four are adapted from http://www.mathematische-basteleien.de/heart.htm.
-
 `const r = 40 * (1-abs(a))*(1+2*abs(a));`  
 `const x = r* cos(a/2)*sin(a);`  
 `const y = -r* sin(a);`
@@ -42,7 +43,7 @@ The heart curve equations for version four are adapted from http://www.mathemati
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-I adapted the equations for heart curves 3 and 4 from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html)
+The equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html)
 
 ## Heart curve 3
 
