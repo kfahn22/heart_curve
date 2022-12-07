@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Heart Curves</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+</head>
+
+<body>
+    <header id="index">
+        <h1>Heart Curves in p5.js</h1>
+        <nav id="myNavBar">
+            <div class="overlay" id="myNav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <div class="overlay-content">
+                    <!-- <a href="about.html" id="aboutMe">About</a> -->
+                    <!-- <a href="wfc.html">WFC</a> -->
+                    <!-- <a href="digital_quilts.html" id="genArt">Digital Quilts</a>
+					<a href="tiles.html" id="tiles">Tiles</a>
+					<a href="tile_creator.html">Tile Creator</a>
+					<a href="resources.html">Resources</a> -->
+                    <!-- <a href="code.html">Code</a> -->
+                </div>
+            </div>
+
+            <div class="topNav">
+                <!-- <a href="index.html" class="active" id="a0">Home</a> -->
+                <!-- <a href="about.html">About</a> -->
+                <a href="heart1.html">Heart Curve 1</a>
+                <a href="heart2.html">Heart Curve 2</a>
+                <a href="heart3.html">Heart Curve 3</a>
+                <a href="heart4.html">Heart Curve 4</a>
+                <a href="heart_shader.html">Heart Curve with a shader</a>
+                <a href="heart_animation.html">Heart Curve Animation</a>
+            </div>
+
+            <!-- Use any element to open/show the overlay navigation menu-->
+            <button id="ham"><span onclick="openNav()"><i class="fa fa-bars"></i></span></button>
+        </nav>
+    </header>
+    <div>
+        <!-- <h2 id="construction">SITE UNDER CONSTRUCTION</h2> -->
+    </div>
+    <div class="container">
+        <div class="row">
+            <div id="">
+            </div>
+            <div id="intro">
+                <p>
+                    There are many ways to draw a heart shape. It could be something really simple like rotating a
+                    square by PI/4 and attatching half circles to two adjacent sides. You can also render a heart using
+                    higher order math equations. Following [Daniel Shiffman](https://thecodingtrain.com)'s approach in
+                    his Heart Curve coding challenge, I choose the later route. I utilized the equations from two
+                    different websites. In some cases, I had to tinker a bit with the parameters until I was able to
+                    render a decent heart shape.
+                    The code for the heart sketches can be found <a
+                        href="https://github.com/kfahn22/heart_curve">here.</a>
+                </p>
+
+                <div class="images">
+                    <div class="row">
+                        <div class="tile"> <img src="images/heart_1.jpg" alt="Heart curve 1" width="200" height="200"
+                                style="vertical-align:bottom;border:1px solid black">
+                            <caption>Heart Curve 1</caption>
+                        </div>
+                        <div class="tile"> <img src="images/heart_2.jpg" alt="Heart curve 2" width="200" height="200"
+                                style="vertical-align:bottom;border:1px solid black">
+                            <caption>Heart Curve 2</caption>
+                        </div>
+                        <div class="tile"> <img src="images/heart_3.jpg" alt="Heart curve 3" width="200" height="200"
+                                style="vertical-align:bottom;border:1px solid black">
+                            <caption>Heart Curve 3</caption>
+                        </div>
+                        <div class="tile"> <img src="images/heart_4.jpg" alt="Heart curve 4" width="200" height="200"
+                                style="vertical-align:bottom;border:1px solid black">
+                            <caption>Heart Curve 4</caption>
+                        </div>
+                        <div class="tile"> <img src="images/shader_heart.jpg" alt="Heart curve 2" width="200"
+                                height="200" style="vertical-align:bottom;border:1px solid black">
+                            <caption>Heart Curve Rendered with a Shader</caption>
+                        </div>
+                        <div class="tile"> <img src="images/heart_animation.jpg" alt="Heart curve animation" width="200"
+                                height="200" style="vertical-align:bottom;border:1px solid black">
+                            <caption>Heart Curve Animation</caption>
+                        </div>
+                        <div class="tile"> <img src="images/3d_heart.jpg" alt="3D Heart with shader" width="200"
+                                height="200" style="vertical-align:bottom;border:1px solid black">
+                            <caption>3D Heart Curve</caption>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- javascript -->
+            <!-- This function toggles a read more button -->
+            <script>
+                $(document).ready(function () {
+                    $("#myInput").on("keyup", function () {
+                        var value = $(this).val().toLowerCase();
+                        $("#myDIV *").filter(function () {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                    });
+                });
+            </script>
+
+            <!-- This function is for a Read more read less button -->
+            <!-- Code found on codepen legendaryPower "Simple Read Less Read More Button"-->
+            <script>
+                $(document).ready(function () {
+                    $("#toggle").click(function () {
+                        var elem = $("#toggle").text();
+                        if (elem == "Answer") {
+                            //Stuff to do when btn is in the read more state
+                            $("#toggle").text("Close");
+                            $("#text").slideDown();
+                        } else {
+                            //Stuff to do when btn is in the read less state
+                            $("#toggle").text("Answer");
+                            $("#text").slideUp();
+                        }
+                    });
+                });
+            </script>
+
+            <!--This function open and closes a curtain overlay -->
+
+            <script>
+                /* Open when someone clicks on the span element */
+                function openNav() {
+                    document.getElementById("myNav").style.width = "100%";
+                }
+
+                /* Close when someone clicks on the "x" symbol inside the overlay */
+                function closeNav() {
+                    document.getElementById("myNav").style.width = "0%";
+                }
+            </script>
+</body>
+
+</html>
