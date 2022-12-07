@@ -103,9 +103,14 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
 
 [P5 sketch](https://editor.p5js.org/kfahn/sketches/CUZdtTg6L)
 
-<img class="img" src="images/animation2.jpg" alt="Heart Animation" style=" display: block;
+## Another version with a different heart curve
+
+<img class="img" src="images/animation2.jpg" alt="Heart Animation 2" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
+
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/vtP85qLbB)
+[Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/Heart_animation_2)
 
 ## Here is my attempt at rendering a 3d heart
 
