@@ -14,7 +14,7 @@ Daniel used the following equations to render a heart curve.
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-- [Coding Train P5 sketch] (https://editor.p5js.org/codingtrain/sketches/egvieHyt0)
+- [Coding Train P5 sketch](https://editor.p5js.org/codingtrain/sketches/egvieHyt0)
 - [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
 
@@ -34,7 +34,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_1)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/TaLiYG9ed)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_1)
 
 ## Heart curve 2
 
@@ -46,7 +47,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_2)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/QIxvo0IsR)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_2)
 
 ## Heart curve 3
 
@@ -58,7 +60,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_3)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/jypBSD0PX)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_3)
 
 ## Heart curve 4
 
@@ -70,11 +73,12 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_4)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/58a49hodn)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_4)
 
 # Heart curves rendered with a shader
 
-There are many ways to render a heart in a shader. Inigo Quelez has a signed distance function (SDF) for a [heart curve](https://iquilezles.org/articles/distfunctions2d/) on his website.  Additionally, Martijn Steinrucken (The Art of Code) has a [tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) where demonstrates how to render a heart shape.
+There are many ways to render a heart in a shader. Inigo Quelez has a signed distance function (SDF) for a [heart curve](https://iquilezles.org/articles/distfunctions2d/) on his website.  Additionally, Martijn Steinrucken (The Art of Code) has a tutorial where he demonstrates how to render a heart shape.
 
 ## Here is my version, which reminds me of a Smartie candy: 
 
@@ -85,20 +89,22 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
 - [P5 sketch](https://editor.p5js.org/kfahn/sketches/MVZqRTY_l)
 - [Code](https://github.com/kfahn22/heart_curve/tree/main/shader_heart_sketches/heart_sketch)
 
-## Here is a screen shot of an animation adapted from a Starfield tutorial by Martyn Steinrucken
+## Here is the version from [Making a Heart in ShaderToy](https://www.youtube.com/watch?v=dXyPOLf2MbU) tutorial by The Art of Code.
+
+<img class="img" src="images/heart_art.jpg" alt="Art of Code Heart" style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" width="800" height="450">
+
+## Here is a screen shot of an animation adapted from [Shader Coding: Making a starfield](https://www.youtube.com/watch?v=dhuigO4A7RY) tutorial by The Art of Code (Martyn Steinrucken).
 
 <img class="img" src="images/heart_animation.jpg" alt="Heart Animation" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
+
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/CUZdtTg6L)
 
 ## Here is my attempt at rendering a 3d heart
 
 <img class="img" src="images/3d_heart.jpg" alt="3DHeart" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="600" height="600">
-
-## Here is the version from [Making a Heart in ShaderToy tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) by The Art of Code (Martyn Steinrucken)
-
-<img class="img" src="images/heart_art.jpg" alt="Art of Code Heart" style=" display: block;
-    margin-left: auto;
-    margin-right: auto;" width="800" height="450">
