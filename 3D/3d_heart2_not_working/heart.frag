@@ -1,4 +1,4 @@
-// This file renders a 3d heart
+// This file renders the a 3d heart
 // The code for the superformula and supershape3D are based primarily on Daniel Shiffman's 3d Supershape Coding CHallenge
 
 // This method is based on a youtube tutorial by The Art of Code  Martijn Steinrucken
@@ -45,24 +45,45 @@ mat2 Rot(float a) {
     return mat2(c, -s, s, c);
 }
 
-// Starting point for formulas from Inigo Quilez Youtube tutorial Making a Heart
-float Heart_3D( vec3 p ) {
-    float r = 7.0; // 15.0
-    float r1 = 20.;
-    float d = length(p) - r;
-    p.x = abs(p.x);
-    p.y = 0.9* p.y - 0.8; //1.2
-    //float k = (15.0 - abs(p.x))/r;
-    float k = (20.0 - p.x)/r1;
-    //p.y = 7.0 + p.y - p.x * sqrt(k);
-    p.y = 9.0 + 1.25 * p.y - 0.50 * p.x * sqrt(k);
-    p.z = p.z * (2.4- p.y/r1);
-    d -= length(p);
-    return d * 1.0 ;
+// Spherical function from Daniel Shiffman
+// I modified the function to change theta bsed on code from https://www.shadertoy.com/view/4llGWM
+vec3 Spherical( vec3 pos) 
+{
+   float r = sqrt(pos.x*pos.x + pos.y*pos.y + pos.z*pos.z);
+  // float theta = atan( sqrt(pos.x*pos.x + pos.y*pos.y), pos.z);
+   float theta =pos.z/r;
+   float phi = atan(pos.y, pos.x);
+   vec3 w = vec3(r, theta, phi);
+   return w;
+}
+
+float Heart2D( vec2 uv) {
+  vec2 q;
+  //Take the absolute value to make it symmetrical
+   uv.x = abs(0.7*uv.x);
+  // Take the negative to flip it right side up
+   uv.y = -1.2*uv.y;
+   
+  float theta =atan(uv.y, uv.x);
+  theta = clamp(theta, -2., -1.);
+
+  // Equation for Heart curve 1
+  float r = 9.0 * pow(sin(theta), 7.0) * pow(2.71828, 2.0 * theta);
+  q.x = r * cos(theta);
+  q.y = -r * sin(theta);
+
+  return length(uv - q) ;
+}
+
+float Rotation ( vec3 p ) {
+   float d1 =  Heart2D( vec2( length(p.xy), p.z ));
+   float d2 =  Heart2D( vec2( length(p.yz), p.x ));
+   float d3 =  Heart2D( vec2( length(p.xz), p.y ));
+  return d1;
 }
 
 float GetDist(  vec3 p ) {
-  return Heart_3D( p );
+  return Rotation( p );
 }
 
 float RayMarch(vec3 ro, vec3 rd) {
@@ -107,11 +128,11 @@ void main( )
     vec3 col = vec3(0);
     
     vec3 ro = vec3(0, 1.25, -3);
-    // ro.yz *= Rot(-m.y*3.14+1.);
-    // ro.xz *= Rot(-m.x*6.2831);
+    ro.yz *= Rot(-m.y*3.14+1.);
+    ro.xz *= Rot(-m.x*6.2831);
     
     
-    vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 0.75);
+    vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 3.);
     col = colorGradient(uv, PURPLE, PINK, 0.25);
   
     float d = RayMarch(ro, rd);
