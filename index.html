@@ -24,13 +24,6 @@
             <div class="overlay" id="myNav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <div class="overlay-content">
-                    <!-- <a href="about.html" id="aboutMe">About</a> -->
-                    <!-- <a href="wfc.html">WFC</a> -->
-                    <!-- <a href="digital_quilts.html" id="genArt">Digital Quilts</a>
-					<a href="tiles.html" id="tiles">Tiles</a>
-					<a href="tile_creator.html">Tile Creator</a>
-					<a href="resources.html">Resources</a> -->
-                    <!-- <a href="code.html">Code</a> -->
                 </div>
             </div>
 
@@ -60,7 +53,8 @@
                 <p>
                     There are many ways to draw a heart shape. It could be something really simple like rotating a
                     square by PI/4 and attatching half circles to two adjacent sides. You can also render a heart using
-                    higher order math equations. Following <a href="https://thecodingtrain.com">Daniel Shiffman's</a> approach in
+                    higher order math equations. Following <a href="https://thecodingtrain.com">Daniel Shiffman's</a>
+                    approach in
                     his Heart Curve coding challenge, I choose the later route. I utilized the equations from two
                     different websites. In some cases, I had to tinker a bit with the parameters until I was able to
                     render a decent heart shape.
@@ -101,55 +95,7 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-            <!-- javascript -->
-            <!-- This function toggles a read more button -->
-            <script>
-                $(document).ready(function () {
-                    $("#myInput").on("keyup", function () {
-                        var value = $(this).val().toLowerCase();
-                        $("#myDIV *").filter(function () {
-                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                        });
-                    });
-                });
-            </script>
-
-            <!-- This function is for a Read more read less button -->
-            <!-- Code found on codepen legendaryPower "Simple Read Less Read More Button"-->
-            <script>
-                $(document).ready(function () {
-                    $("#toggle").click(function () {
-                        var elem = $("#toggle").text();
-                        if (elem == "Answer") {
-                            //Stuff to do when btn is in the read more state
-                            $("#toggle").text("Close");
-                            $("#text").slideDown();
-                        } else {
-                            //Stuff to do when btn is in the read less state
-                            $("#toggle").text("Answer");
-                            $("#text").slideUp();
-                        }
-                    });
-                });
-            </script>
-
-            <!--This function open and closes a curtain overlay -->
-
-            <script>
-                /* Open when someone clicks on the span element */
-                function openNav() {
-                    document.getElementById("myNav").style.width = "100%";
-                }
-
-                /* Close when someone clicks on the "x" symbol inside the overlay */
-                function closeNav() {
-                    document.getElementById("myNav").style.width = "0%";
-                }
-            </script>
+        </div>
 </body>
 
 </html>
