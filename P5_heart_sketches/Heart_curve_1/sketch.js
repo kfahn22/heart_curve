@@ -43,7 +43,7 @@ function draw() {
   endShape();
 
   // gives 1/2 of the heart curve
-  const r = 9 * pow(sin(a), 7) * pow(e, 2 * a)
+  const r = 9 * pow(sin(a), 7) * pow(e, 2 * a);
   const x = r * cos(a);
   const y = -r * abs(sin(a));
   heart.push(createVector(x, y));
