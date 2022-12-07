@@ -18,7 +18,9 @@ Daniel used the following equations to render a heart curve.
 - [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
 
-The equations for the first and second heart are from [Mathematische-Basteleien](http://www.mathematische-basteleien.de/heart.html).
+The equations for the first and second heart are from [Mathematische-Basteleien](http://www.mathematische-basteleien.de/heart.html), while the equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html).  All four hearts are added as classes in the p5 sketch.  Version 3 is will render and the others are commented out. 
+
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/xNdg0UUI6)
 
 ## Heart curve 1
 
@@ -32,6 +34,7 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
+[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_1)
 
 ## Heart curve 2
 
@@ -43,7 +46,7 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-The equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html)
+[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_2)
 
 ## Heart curve 3
 
@@ -55,6 +58,7 @@ The equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wo
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
+[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_3)
 
 ## Heart curve 4
 
@@ -66,6 +70,7 @@ The equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wo
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
+[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_4)
 
 # Heart curves rendered with a shader
 
@@ -78,6 +83,7 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
     margin-right: auto;" width="800" height="450">
 
 - [P5 sketch](https://editor.p5js.org/kfahn/sketches/MVZqRTY_l)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/shader_heart_sketches/heart_sketch)
 
 ## Here is a screen shot of an animation adapted from a Starfield tutorial by Martyn Steinrucken
 
