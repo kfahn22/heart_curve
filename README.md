@@ -85,7 +85,7 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
 - [P5 sketch](https://editor.p5js.org/kfahn/sketches/MVZqRTY_l)
 - [Code](https://github.com/kfahn22/heart_curve/tree/main/shader_heart_sketches/heart_sketch)
 
-## Here is a screen shot of an animation adapted from a Starfield tutorial by Martyn Steinrucken
+## Here is a screen shot of an animation adapted from [Shader Coding: Making a starfield](https://www.youtube.com/watch?v=dhuigO4A7RY) tutorial by The Art of Code (Martyn Steinrucken)
 
 <img class="img" src="images/heart_animation.jpg" alt="Heart Animation" style=" display: block;
     margin-left: auto;
@@ -97,7 +97,7 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
     margin-left: auto;
     margin-right: auto;" width="600" height="600">
 
-## Here is the version from [Making a Heart in ShaderToy](https://www.youtube.com/watch?v=dXyPOLf2MbU) tutorial by The Art of Code (Martyn Steinrucken)
+## Here is the version from [Making a Heart in ShaderToy](https://www.youtube.com/watch?v=dXyPOLf2MbU) tutorial by The Art of Code
 
 <img class="img" src="images/heart_art.jpg" alt="Art of Code Heart" style=" display: block;
     margin-left: auto;
