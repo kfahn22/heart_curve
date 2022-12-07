@@ -34,7 +34,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_1)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/TaLiYG9ed)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_1)
 
 ## Heart curve 2
 
@@ -46,7 +47,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_2)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/QIxvo0IsR)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_2)
 
 ## Heart curve 3
 
@@ -58,7 +60,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_3)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/jypBSD0PX)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_3)
 
 ## Heart curve 4
 
@@ -70,7 +73,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_4)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/58a49hodn)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_4)
 
 # Heart curves rendered with a shader
 
@@ -96,6 +100,8 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
 <img class="img" src="images/heart_animation.jpg" alt="Heart Animation" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
+
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/CUZdtTg6L)
 
 ## Here is my attempt at rendering a 3d heart
 
