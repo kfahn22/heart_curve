@@ -18,7 +18,7 @@ Daniel used the following equations to render a heart curve.
 - [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
 
-The equations for the first and second heart curves are from [Mathematische-Basteleien](http://www.mathematische-basteleien.de/heart.html), while the equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html).  All four hearts are added as classes in the p5 sketch.  Version 3 is will render and the others are commented out. 
+The equations for the first and second heart curves are from [Mathematische-Basteleien](http://www.mathematische-basteleien.de/heart.html), while the equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html).  All four hearts are added as classes in the p5 sketch.  Heart curve 3 is the heart that will render and the others are commented out. 
 
 [P5 sketch](https://editor.p5js.org/kfahn/sketches/xNdg0UUI6)
 
@@ -91,13 +91,13 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-## Here is my first attempt at rendering a 3d heart
+## Here is my attempt at rendering a 3d heart
 
 <img class="img" src="images/3d_heart.jpg" alt="3DHeart" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="600" height="600">
 
-## Here is the version from Martyn Steinrucken
+## Here is the version from [Making a Heart in ShaderToy tutorial](https://www.youtube.com/watch?v=dXyPOLf2MbU) by The Art of Code (Martyn Steinrucken)
 
 <img class="img" src="images/heart_art.jpg" alt="Art of Code Heart" style=" display: block;
     margin-left: auto;
