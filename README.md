@@ -14,7 +14,7 @@ Daniel used the following equations to render a heart curve.
     margin-left: auto;
     margin-right: auto;" width="800" height="450">
 
-- [Coding Train P5 sketch] (https://editor.p5js.org/codingtrain/sketches/egvieHyt0)
+- [Coding Train P5 sketch](https://editor.p5js.org/codingtrain/sketches/egvieHyt0)
 - [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
 
