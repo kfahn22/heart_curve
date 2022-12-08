@@ -20,7 +20,6 @@ Daniel used the following equations to render a heart curve.
 
 The equations for the first and second heart curves are from [Mathematische-Basteleien](http://www.mathematische-basteleien.de/heart.html), while the equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html).  All four hearts are added as classes in this [p5 sketch](https://editor.p5js.org/kfahn/sketches/xNdg0UUI6).  Heart curve 3 is the heart that will render and the others are commented out. 
 
-[Live Version](https://kfahn22.github.io/heart_curve/)
 
 ## Heart curve 1
 
@@ -39,8 +38,10 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
 
 ## Heart curve 2
 
+The second curve is tall and skinny, and renders a little slowly.
+
 `const r = 40 * (1-abs(a))*(1+2*abs(a));`  
-`const x = r* cos(a/2)*sin(a);`  
+`const x = r * cos(a/2)*sin(a);`  
 `const y = -r* sin(a);`
 
 <img class="img" src="images/heart_2.jpg" alt="Heart Curve 2" style=" display: block;
@@ -51,6 +52,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
 - [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_2)
 
 ## Heart curve 3
+
+This one is my favorite.  Just a typical heart shape.  
 
 `const r = 325;`  
 `const x = -r * sin(a) * cos(a) * log(abs(a) * 0.9);`  
@@ -64,6 +67,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
 - [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_3)
 
 ## Heart curve 4
+
+This heart is very curvy.  It would probably look a little  better with a deeper curve in the middle.
 
 `const r = 2 - 2 * sin(a) + sin(a)*(pow(abs(cos(a)), 0.5)/(sin(a) + 1.4)`  
 `const x = r * cos(a);`  
@@ -89,7 +94,9 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
 - [P5 sketch](https://editor.p5js.org/kfahn/sketches/15Wj_4RYR)
 - [Code](https://github.com/kfahn22/heart_curve/tree/main/shader_heart_sketches/heart_sketch)
 
-## Another shader version.  I used the clamp function to limit theta for this one.
+## Another shader version.
+
+The trick to getting this one to render was using the clamp function to limit theta.
 
 <img class="img" src="images/shader_heart2.jpg" alt="Heart" style=" display: block;
     margin-left: auto;
@@ -122,6 +129,8 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
 [Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/Heart_animation_2)
 
 ## Here is my attempt at rendering a 3d heart
+
+My attempts at rendering a 3D heart have not been entirely successful.  I think it is because when graphing a heart curve, theta is often limited to a certain range.  While the heart renders it is not rendered at the center of the canvas, and there is another part of the curve that shows up as well.  
 
 <img class="img" src="images/3d_heart.jpg" alt="3DHeart" style=" display: block;
     margin-left: auto;
