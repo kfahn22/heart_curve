@@ -125,12 +125,12 @@ The trick to getting this one to render was using the clamp function to limit th
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-[P5 sketch](https://editor.p5js.org/kfahn/sketches/vtP85qLbB)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/vtP85qLbB)  
 [Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/Heart_animation_2)
 
 ## Here is my attempt at rendering a 3d heart
 
-My attempts at rendering a 3D heart have not been entirely successful.  I think it is because when graphing a heart curve, theta is often limited to a certain range.  While the heart renders it is not rendered at the center of the canvas, and there is another part of the curve that shows up as well.  
+My attempts at rendering a 3D heart have not been entirely successful.  I think it is because when graphing a heart curve, theta is often limited to a certain range.  While the heart renders, it is not centered in the canvas, and there is another part of the curve that shows up as well.  
 
 <img class="img" src="images/3d_heart.jpg" alt="3DHeart" style=" display: block;
     margin-left: auto;
