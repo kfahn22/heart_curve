@@ -113,6 +113,8 @@ The trick to getting this one to render was using the clamp function to limit th
 
 ## Here is a screen shot of an animation adapted from [Shader Coding: Making a starfield](https://www.youtube.com/watch?v=dhuigO4A7RY) tutorial by The Art of Code (Martyn Steinrucken).
 
+Martyn Steinrucken explains the algorithm to create this effect in his tutorial, so if you are interested in it go watch his excellent video.
+
 <img class="img" src="images/heart_animation.jpg" alt="Heart Animation" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
