@@ -117,7 +117,7 @@ The trick to getting this one to render was using the clamp function to limit th
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-[P5 sketch](https://editor.p5js.org/kfahn/sketches/CUZdtTg6L)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/CUZdtTg6L)
 
 ## Another animation with a different heart curve
 
@@ -125,8 +125,8 @@ The trick to getting this one to render was using the clamp function to limit th
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-[P5 sketch](https://editor.p5js.org/kfahn/sketches/vtP85qLbB)  
-[Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/Heart_animation_2)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/vtP85qLbB)  
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/Heart_animation_2)
 
 ## Here is my attempt at rendering a 3d heart
 
