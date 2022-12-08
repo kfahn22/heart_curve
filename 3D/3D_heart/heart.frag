@@ -44,22 +44,65 @@ mat2 Rot(float a) {
     float s=sin(a), c=cos(a);
     return mat2(c, -s, s, c);
 }
-
+// Starting point for formulas from Inigo Quilez Youtube tutorial Making a Heart
+// float Heart_3D( vec3 p ) {
+//     float r = 0.0; // 15.0
+//     float r1 = 20.;
+//     float d = length(p) - r;
+//     p.x = abs(p.x);
+//     p.y = 0.9* p.y - 0.8; //1.2
+//     //float k = (15.0 - abs(p.x))/r;
+//     float k = (20.0 - p.x)/r1;
+//     //p.y = 7.0 + p.y - p.x * sqrt(k);
+//     p.y = 9.0 + 1.25 * p.y - 0.50 * p.x * sqrt(k);
+//     p.z = p.z * (2.4- p.y/r1);
+//     d -= length(p);
+//     //return d * 1.0 ;
+//     return d ;
+// }
 // Starting point for formulas from Inigo Quilez Youtube tutorial Making a Heart
 float Heart_3D( vec3 p ) {
-    float r = 7.0; // 15.0
-    float r1 = 20.;
+    vec3 q;
+    float r = 0.0; // 15.0
+    float r1 = 18.;
     float d = length(p) - r;
     p.x = abs(p.x);
-    p.y = 0.9* p.y - 0.8; //1.2
+    //p.y = 0.9* p.y - 0.8; //1.2
+   // p.y = 0.9* p.y; //1.2
+    p.y = 0.8* p.y; //1.2
     //float k = (15.0 - abs(p.x))/r;
-    float k = (20.0 - p.x)/r1;
+    //float k = (20.0 - p.x)/r1;
+    float k = (20.0 - p.x)/20.;
     //p.y = 7.0 + p.y - p.x * sqrt(k);
-    p.y = 9.0 + 1.25 * p.y - 0.50 * p.x * sqrt(k);
-    p.z = p.z * (2.4- p.y/r1);
-    d -= length(p);
-    return d * 1.0 ;
+    q.x = p.x;
+    q.y = 9.0 + 1.25 * p.y - 0.50 * q.x * sqrt(k);
+    q.z = p.z * (2.4-q.y/r1);
+    d -= length(q);
+    return d;
 }
+
+// // Starting point for formulas from Inigo Quilez Youtube tutorial Making a Heart
+// float Heart_3D( vec3 p ) {
+//     float r;
+//     float d;
+//     vec3 q;
+//     //r = 7.0; // 15.0
+//     float theta = atan(p.y, p.x);
+//     theta = clamp(theta, -0.5, 0.5);
+//     //theta = clamp(theta, -2., -1.);
+//     r = 9.0 * pow(sin(theta), 7.0) * pow(2.71828, 2.0 * theta);
+//     float r1 = 20.; // 20.
+//     //float d = length(p) - r;
+//     p.x = abs(p.x);
+//     p.y = 0.9* p.y - 0.8; //1.2
+//     //float k = (15.0 - abs(p.x))/r;
+//     float k = (20.0 - p.x)/r1;
+//     //p.y = 7.0 + p.y - p.x * sqrt(k);
+//     p.y = 9.0 + 1.25 * p.y - 0.50 * p.x * sqrt(k);
+//     p.z = p.z * (2.4- p.y/r1);
+//     d -= length(p-r);
+//     return d * 1.0 ;
+// }
 
 float GetDist(  vec3 p ) {
   return Heart_3D( p );
@@ -106,9 +149,9 @@ void main( )
 	vec2 m = iMouse.xy/u_resolution.xy;
     vec3 col = vec3(0);
     
-    vec3 ro = vec3(0, 1.25, -3);
-    // ro.yz *= Rot(-m.y*3.14+1.);
-    // ro.xz *= Rot(-m.x*6.2831);
+    vec3 ro = vec3(0, 3., -3);
+    ro.yz *= Rot(-m.y*3.14+1.);
+    ro.xz *= Rot(-m.x*6.2831);
     
     
     vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 0.75);
