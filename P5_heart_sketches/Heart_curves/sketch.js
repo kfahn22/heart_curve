@@ -22,10 +22,15 @@ function setup() {
 function draw() {
   background(0);
   noStroke();
-  h1.show();
+  h1.show(a);
   // h2.show();
   // h3.show();
   // h4.show();
+   // So that it stops
+   if (a > PI) {
+    noLoop();
+  }
+  a += 0.01;
 }
 
 // function mousePressed() {

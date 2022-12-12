@@ -8,7 +8,7 @@ constructor(_px, _py, _sc) {
     this.heart1 = [];
 }
 
-show() {
+show(a) {
     translate(this.px,this.py);
     noStroke(255);
     strokeWeight(2);
@@ -34,9 +34,9 @@ show() {
     this.heart1.push(createVector(x, y));
   
     // So that it stops
-    if (a > PI) {
-      noLoop();
-    }
-    a += 0.01;
+    // if (a > PI) {
+    //   noLoop();
+    // }
+    // a += 0.01;
   }
 }
