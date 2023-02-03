@@ -27,7 +27,7 @@ class Heart1 {
         endShape();
         pop();
         // gives 1/2 of the heart curve
-        const r = this.sc * pow(sin(a), 7) * pow(e, 2 * a)
+        const r = this.sc * pow(sin(a), 7) * pow(e, 2 * a);
         const x = r * cos(a);
         const y = -r * abs(sin(a));
         this.heart1.push(createVector(x, y));
