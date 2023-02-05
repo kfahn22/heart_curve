@@ -5,14 +5,7 @@ class Heart {
     this.px = _px;
     this.py = _py;
     this.pz = _pz;
-    this.p = 3;
-    this.q = 2;
-    this.h = 2;
-    this.color = color('#9253A1');
     this.points = [];
-    this.total = 25;
-    this.sc = 0.1;
-    this.height = 1;
   }
 
   ctHeart(_r) {
@@ -21,7 +14,6 @@ class Heart {
       const y = -_r * (13 * cos(beta) - 5 * cos(2 * beta) - 2 * cos(3 * beta) - cos(4 * beta));
       const z = this.pz;
       if (this.points.length < 361) {
-        // this.points[beta] = createVector(x, y, z);
         this.points[beta] = createVector(x, y, z);
       } else {
         break;
@@ -30,9 +22,9 @@ class Heart {
   }
 
   show(k, num) {
-    let per = map(k/num, 0, 1, 100, 255);
-    let from = color(255,153, 255);
-    let to = color(122, 0, 153);
+    //let per = map(k/num, 0, 1, 100, 255);
+    let from = color(255,26, 255);
+    let to = color(102, 0, 102);
     let col1 = lerpColor(from, to, k/num);
     let col2 = lerpColor(to, from, k/num);
     push();
