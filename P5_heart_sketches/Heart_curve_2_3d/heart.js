@@ -14,75 +14,93 @@ class Heart {
     this.height = 1;
   }
 
-  oneHeart() {
-    // 630 when angle mode radians
-    for (let beta = 0; beta < 180; beta += 1) {
-      let phi = this.p * beta;
-      let theta = this.q * beta;
-      // const r = this.sc * pow(sin(beta), 7) * pow(e, 2 * beta);
-      let r = this.sc * (1 - abs(beta)) * (1 + 2 * abs(beta));
-      //const r = 2 - 2 * sin(beta) + sin(beta) * (pow(abs(cos(beta)), 0.5) / (sin(beta) + 1.4));
-      let x = r * cos(theta) * (this.h + cos(phi));
-      let y = -r * sin(theta) * (this.h + cos(phi));
-      let z = r * sin(phi);
-      if (this.points.length < 180) {
-        this.points[beta] = createVector(x, y, z);
-      } else {
-        break;
-      }
-    }
-  }
+  // oneHeart() {
+  //   // 630 when angle mode radians
+  //   for (let beta = 0; beta < 180; beta += 1) {
+  //     let phi = this.p * beta;
+  //     let theta = this.q * beta;
+  //     // const r = this.sc * pow(sin(beta), 7) * pow(e, 2 * beta);
+  //     let r = this.sc * (1 - abs(beta)) * (1 + 2 * abs(beta));
+  //     //const r = 2 - 2 * sin(beta) + sin(beta) * (pow(abs(cos(beta)), 0.5) / (sin(beta) + 1.4));
+  //     let x = r * cos(theta) * (this.h + cos(phi));
+  //     let y = -r * sin(theta) * (this.h + cos(phi));
+  //     let z = 0;
+  //     //let z = r * sin(phi);
+  //     if (this.points.length < 180) {
+  //       this.points[beta] = createVector(x, y, z);
+  //     } else {
+  //       break;
+  //     }
+  //   }
+  // }
+  // spherical(_r, total) {
+  //   for (let i = 0; i < total + 1; i++) {
+  //     this.points[i] = [];
+  //     const lat = map(i, 0, total, 0, PI);
+  //     for (let j = 0; j < total + 1; j++) {
+  //       const lon = map(j, 0, total, 0, TWO_PI);
+  //       //const x = r * sin(lat) * cos(lon);
+  //       const x = _r * sin(lat) * 16 * pow(sin(lon), 3);
+  //       //const y = r * sin(lat) * sin(lon);
+  //       const y = -_r * sin(lat) * (13 * cos(lon) - 5 * cos(2 * lon) - 2 * cos(3 * lon) - cos(4 * lon));
+  //       const z = _r * cos(lat);
+  //       this.points[i][j] = createVector(x, y, z);
+  //     }
+  //   }
+  // }
 
-  ctHeart() {
+  ctHeart(_r, num) {
     for (let beta = 0; beta < 361; beta += 1) {
-      let phi = this.p * beta;
-      let theta = this.q * beta;
-      const r = 1;
-      const x = r * 16 * pow(sin(theta), 3) * (this.h + cos(theta));
-      const y = -r * (13 * cos(theta) - 5 * cos(2 * theta) - 2 * cos(3 * theta) - cos(4 * theta)) * (this.h + cos(phi));
-      const z = r * sin(phi);
-      if (this.points.length < 361) {
-        this.points[beta] = createVector(x, y, z);
-      } else {
-        break;
-      }
-    }
-  }
-  anHeart() {
-    for (let beta = 0; beta < 361; beta += 1) {
-      let phi = this.p * beta;
-      let theta = this.q * beta;
-      const r = 40 * (1 - abs(theta)) * (1 + 2 * abs(theta));
-      const x = r * cos(theta / 2) * sin(theta) * (this.h + cos(phi));
-      const y = -r * sin(theta) * (this.h + cos(phi));
-      const z = r * sin(phi);
-      if (this.points.length < 361) {
-        this.points[beta] = createVector(x, y, z);
-      } else {
-        break;
-      }
-    }
-  }
+      // let phi = this.p * beta;
+      // let theta = this.q * beta;
 
-  oneHt() {
-    sc = 10;
-    //let r = 40 * (1 - abs(beta)) * (1 + 2 * abs(beta));
-    for (let i = 0; i < this.total + 1; i++) {
-      this.points[i] = [];
-      const lat = map(i, 0, this.total, 0, PI);
-      for (let j = 0; j < this.total + 1; j++) {
-        const lon = map(j, 0, this.total, 0, TWO_PI);
-        const x = this.sc * 16 * pow(sin(lat), 3) * (this.h + cos(lon));
-        const y = -this.sc * (13 * cos(lat) - 5 * cos(2 * lat) - 2 * cos(3 * lat) - cos(4 * lat)) * (this.h + cos(lon));
-        const z = this.sc * cos(lat);
-        if (this.points.length < 361) {
-          this.points[i][j] = createVector(x, y, z);
-        } else {
-          break;
-        }
+      const lat = map(k, 0, num, 0, PI);
+      const x = _r * 16 * pow(sin(beta), 3);
+      const y = -_r * (13 * cos(beta) - 5 * cos(2 * beta) - 2 * cos(3 * beta) - cos(4 * beta));
+      const z = -1;
+      if (this.points.length < 361) {
+       // this.points[beta] = createVector(x, y, z);
+        this.points[beta] = createVector(x, y);
+      } else {
+        break;
       }
     }
   }
+  // anHeart() {
+  //   for (let beta = 0; beta < 361; beta += 1) {
+  //     let phi = this.p * beta;
+  //     let theta = this.q * beta;
+  //     const r = 40 * (1 - abs(theta)) * (1 + 2 * abs(theta));
+  //     const x = r * cos(theta / 2) * sin(theta) * (this.h + cos(phi));
+  //     const y = -r * sin(theta) * (this.h + cos(phi));
+  //     const z = r * sin(phi);
+  //     if (this.points.length < 361) {
+  //       this.points[beta] = createVector(x, y, z);
+  //     } else {
+  //       break;
+  //     }
+  //   }
+  // }
+
+  // oneHt() {
+  //   sc = 10;
+  //   //let r = 40 * (1 - abs(beta)) * (1 + 2 * abs(beta));
+  //   for (let i = 0; i < this.total + 1; i++) {
+  //     this.points[i] = [];
+  //     const lat = map(i, 0, this.total, 0, PI);
+  //     for (let j = 0; j < this.total + 1; j++) {
+  //       const lon = map(j, 0, this.total, 0, TWO_PI);
+  //       const x = this.sc * 16 * pow(sin(lat), 3) * (this.h + cos(lon));
+  //       const y = -this.sc * (13 * cos(lat) - 5 * cos(2 * lat) - 2 * cos(3 * lat) - cos(4 * lat)) * (this.h + cos(lon));
+  //       const z = this.sc * cos(lat);
+  //       if (this.points.length < 361) {
+  //         this.points[i][j] = createVector(x, y, z);
+  //       } else {
+  //         break;
+  //       }
+  //     }
+  //   }
+  // }
 
   // http://mathandmultimedia.com/2013/02/22/3d-heart-graph/
   // this doesn't work!!
@@ -104,15 +122,13 @@ class Heart {
     push();
     noFill();
     translate(this.px, this.py);
-    // translate(0, height/2);
     beginShape();
     for (let p of this.points) {
-      //translate(v.x, v.y, v.z);
-      //let col = color(this.c);
-      //stroke(255, 255, 255, 150);
-      //let d = dist(c)
-    fill(255, 0, 0, 100)
-      vertex(p.x, p.y, p.z);
+      strokeWeight(2);
+      //fill('#b30059')
+      stroke(179, 0, 89, 150);
+    //  vertex(p.x, p.y, p.z);
+      vertex(p.x, p.y);
     }
     endShape();
     pop();
