@@ -29,12 +29,12 @@ function draw() {
   angle += 1;
   let num = hearts.length;
   for (let k = 0; k < num/2; k++) {
-    r = map(k, 0, num/2, 1, 5);
+    r = map(k, 0, num/2, 0.001, 5);
     hearts[k].ctHeart(r);
     hearts[k].show(k, num);
   }
   for (let k = num/2; k < num; k++) {
-    r = map(k, num/2, hearts.length, 5, 1);
+    r = map(k, num/2, hearts.length, 5, 0.001);
     hearts[k].ctHeart(r);
     hearts[k].show(k, num);
   }
