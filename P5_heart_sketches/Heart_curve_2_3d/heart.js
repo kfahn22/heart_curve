@@ -31,14 +31,23 @@ class Heart {
 
   show(k, num) {
     let per = map(k/num, 0, 1, 100, 255);
+    let from = color(255,153, 255);
+    let to = color(122, 0, 153);
+    let col1 = lerpColor(from, to, k/num);
+    let col2 = lerpColor(to, from, k/num);
     push();
     translate(this.px, this.py);
     beginShape();
     for (let v of this.points) {
       strokeWeight(1);
-      stroke(per, 0, 119, 100);
-      if (k === 0 || k === num) {
-        fill(230, 0, 119, 200);
+      if (k < num/2)
+     {
+       stroke(col1, 100);
+     } else {
+       stroke(col2, 100);
+     }
+      if (k == 0 || k == num/2 || k == num) {
+        fill(col1);
       }
       vertex(v.x, v.y, v.z);
     }
