@@ -17,10 +17,10 @@ let angle = 0; //
 function setup() {
   createCanvas(600, 600, WEBGL);
   angleMode(DEGREES);
-  for (let z = -10; z < 0; z += 1) {
+  for (let z = -10; z < -1; z += 1) {
     hearts.push(new Heart(0, 0, z));
   }
-  for (let z = 0; z < 10; z += 1) {
+  for (let z = 1; z < 10; z += 1) {
     hearts.push(new Heart(0, 0, z));
   }
 }

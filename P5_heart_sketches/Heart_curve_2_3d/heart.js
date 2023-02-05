@@ -37,10 +37,10 @@ class Heart {
       strokeWeight(1);
       stroke(230, 0, 119, 100);
       vertex(v.x, v.y, v.z);
-      if (k === 0 || k === num) {
-        fill(230, 0, 119, 50);
-      }
-      vertex(v.x, v.y, v.z);
+     // if (k === 0 || k === num) {
+        fill(230, 0, 119, 150);
+     // }
+      // vertex(v.x, v.y, v.z);
     }
     endShape();
     pop();
