@@ -10,28 +10,39 @@
 
 let hearts = [];
 let a = 0;
+let r;
 const e = 2.71828;
 let angle = 0; //
 
 function setup() {
   createCanvas(600, 600, WEBGL);
   angleMode(DEGREES);
-  for (k = 0; k < 1; k++) {
-    hearts.push(new Heart(0, 0));
+  for (let z = -10; z < 0; z += 1) {
+    hearts.push(new Heart(0, 0, z));
+  }
+  for (let z = 0; z < 10; z += 1) {
+    hearts.push(new Heart(0, 0, z));
   }
 }
+
 
 function draw() {
   background(0);
   noStroke();
   rotateY(angle);
   angle += 1;
-  for (let k = 0; k < hearts.length; k++) {
-   // for (let r = 0; r < 5; r++) {
-      hearts[k].ctHeart(2, hearts.length);
-      hearts[k].show();
-   // }
+  let num = hearts.length;
+  for (let k = 0; k < num/2; k++) {
+    r = map(k, 0, num/2, 2, 6);
+    hearts[k].ctHeart(r);
+    hearts[k].show(k, num);
   }
+  for (let k = num/2; k < num; k++) {
+    r = map(k, 0, hearts.length, 6, 2);
+    hearts[k].ctHeart(r);
+    hearts[k].show(k, num);
+  }
+
 }
 
 // function mousePressed() {
