@@ -22,16 +22,16 @@ class Heart {
   }
 
   show(k, num) {
-    //let per = map(k/num, 0, 1, 100, 255);
-    let from = color(255,26, 255);
-    let to = color(102, 0, 102);
+    let per = map(k, 0, num/2, 1, 3);
+    let from = color(217,102,255);
+    let to = color(134,0,179);
     let col1 = lerpColor(from, to, k/num);
     let col2 = lerpColor(to, from, k/num);
     push();
     translate(this.px, this.py);
     beginShape();
     for (let v of this.points) {
-      strokeWeight(1);
+      strokeWeight(per);
       if (k < num/2)
      {
        stroke(col1, 100);
