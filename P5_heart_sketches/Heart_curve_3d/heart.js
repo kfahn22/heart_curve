@@ -1,5 +1,3 @@
-let c;
-
 class Heart {
   constructor(_px, _py, _pz) {
     this.px = _px;
