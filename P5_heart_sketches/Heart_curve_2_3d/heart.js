@@ -30,17 +30,17 @@ class Heart {
   }
 
   show(k, num) {
+    let per = map(k/num, 0, 1, 100, 255);
     push();
     translate(this.px, this.py);
     beginShape();
     for (let v of this.points) {
       strokeWeight(1);
-      stroke(230, 0, 119, 100);
+      stroke(per, 0, 119, 100);
+      if (k === 0 || k === num) {
+        fill(230, 0, 119, 200);
+      }
       vertex(v.x, v.y, v.z);
-     // if (k === 0 || k === num) {
-        fill(230, 0, 119, 150);
-     // }
-      // vertex(v.x, v.y, v.z);
     }
     endShape();
     pop();

@@ -17,10 +17,10 @@ let angle = 0; //
 function setup() {
   createCanvas(600, 600, WEBGL);
   angleMode(DEGREES);
-  for (let z = -10; z < -1; z += 1) {
+  for (let z = -20; z < -0.25; z += 0.25) {
     hearts.push(new Heart(0, 0, z));
   }
-  for (let z = 1; z < 10; z += 1) {
+  for (let z = 0.25; z < 20; z += 0.25) {
     hearts.push(new Heart(0, 0, z));
   }
 }
@@ -28,17 +28,18 @@ function setup() {
 
 function draw() {
   background(0);
+  //ambientLight(255, 179,218);
   noStroke();
   rotateY(angle);
   angle += 1;
   let num = hearts.length;
   for (let k = 0; k < num/2; k++) {
-    r = map(k, 0, num/2, 2, 6);
+    r = map(k, 0, num/2, 1, 5);
     hearts[k].ctHeart(r);
     hearts[k].show(k, num);
   }
   for (let k = num/2; k < num; k++) {
-    r = map(k, 0, hearts.length, 6, 2);
+    r = map(k, num/2, hearts.length, 5, 1);
     hearts[k].ctHeart(r);
     hearts[k].show(k, num);
   }
