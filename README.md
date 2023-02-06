@@ -131,7 +131,10 @@ Martyn Steinrucken explains the algorithm to create this effect in his tutorial,
 - [P5 sketch](https://editor.p5js.org/kfahn/sketches/vtP85qLbB)  
 - [Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/Heart_animation_2)
 
-## Here is my attempt at rendering a 3d heart
+## 3d heart
+
+I have tried several different approaches to rendering a 3D heart.  My most successful version is a little hacky and I got the idea from a failed attempt to ask chatGPT to render a 3D heart (it gave code for a rotating 2D heart -- most likely from Daniel Shiffman's Heart curve coding challenge.)  While it did not give me the answer I was hoping for, it did suggest a way to render the heart -- draw hearts with different combinations of r and z.  
+
 
 My attempts at rendering a 3D heart have not been entirely successful.  I think it is because when graphing a heart curve, theta is often limited to a certain range.  While the heart renders, it is not centered in the canvas, and there is another part of the curve that shows up as well.  
 
