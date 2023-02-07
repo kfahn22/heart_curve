@@ -137,7 +137,8 @@ I have tried several different approaches to rendering a 3D heart.  My most succ
 
 ![](./GIFS/3dheart.gif)
 
-I also have a shader version which doesn't really work.  The code draws two hearts displaced from the origin.  
+I also have a shader version.  I tried following along with Inigo Quilez's tutorial where he walks through the steps in general terms.  I obviously didn't quite get it right, however, becasue my code draws two hearts displaced from the origin. (If you move the mouse you will see that there are two of them rotating around the origin.)
+
 <img class="img" src="images/3d_shader_heart.png" alt="3D shader heart" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="400" height="400">
