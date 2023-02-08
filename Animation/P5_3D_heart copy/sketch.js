@@ -8,7 +8,7 @@
 // https://editor.p5js.org/kfahn/sketches/SsZu1WV1G
 
 let hearts = [];
-let r = 1;
+let r;
 const e = 2.71828;
 
 function setup() {
@@ -20,18 +20,19 @@ function draw() {
   background('#330033');
   noStroke();
   for (let i = 0; i < 1; i++) {
-    let h = new Heart(random(400), random(400), r);
+    let h = new Heart(random(400), random(400));
     hearts.push(h);
   }
   for (let i = hearts.length - 1; i >= 0; i--) {
     hearts[i].ctHeart();
     hearts[i].update();
-    hearts[i].show(r);
+    hearts[i].show();
+    if (hearts[i].finished()) {
+      // remove this heart
+      hearts.splice(i, 1);
+    }
    // console.log(hearts.length);
   }
-  if (hearts.length > 5) {
-    // if (hearts[i].finished()) {
-     // remove this heart
-     hearts.splice(i, 1);
-   }
+
+
 }

@@ -5,6 +5,8 @@
 
 // https://editor.p5js.org/kfahn/sketches/SsZu1WV1G
 
+//  animation is too fast
+
 let hearts = [];
 let timeOfLastHeart = 0;
 let r = 1;

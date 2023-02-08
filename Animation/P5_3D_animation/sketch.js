@@ -5,6 +5,8 @@
 
 // https://editor.p5js.org/kfahn/sketches/SsZu1WV1G
 
+// nice pace but not adding new hearts
+
 let hearts = [];
 let timeOfLastHeart = 0;
 let r = 1;
@@ -35,23 +37,6 @@ function draw() {
   }
  
 }
-
-// function ctHeart() {
-//   let px = random(width);
-//   let py = random(height);
-//   let r = 0.1;
-//   for (let beta = 0; beta < 361; beta += 1) {
-//     const x = r * 16 * pow(sin(beta), 3);
-//     const y = -r * (13 * cos(beta) - 5 * cos(2 * beta) - 2 * cos(3 * beta) - cos(4 * beta));
-
-//     if (points.length < 361) {
-//       points[beta] = createVector(x, y);
-//     } else {
-//       break;
-//     }
-//     r += 0.1;
-//   }
-// }
 // function mousePressed() {
 //   save('heart.jpg');
 //  }

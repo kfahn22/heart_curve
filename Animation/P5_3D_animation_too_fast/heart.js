@@ -2,7 +2,7 @@ class Heart {
   constructor(_px, _py, _r) {
     this.px = _px;
     this.py = _py;
-    this.r = _r;
+    this.r = 1;
     this.alpha = 255;
     this.c = color(random(255), 0, random(255));
     this.points = [];
@@ -21,16 +21,17 @@ class Heart {
     }
   }
   update() {
-    if (this.r < 4) {
-      this.r += 0.1
+    if (this.r < 6) {
+      this.r += 0.1;
     }
   }
 
   finished() {
     this.alpha = 0;
   }
-  show(r) {
-    let a1 = map(this.r, 0.1, 3, 0, 255);
+
+  show() {
+    let a1 = map(this.r, 1, 6, 0, 255);
     this.alpha = 255 - a1;
     noStroke();
     fill(217, 102, 255, this.alpha);
