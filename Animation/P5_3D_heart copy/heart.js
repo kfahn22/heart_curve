@@ -28,7 +28,7 @@ class Heart {
     let col1 = lerpColor(from, to, k/num);
     let col2 = lerpColor(to, from, k/num);
     noStroke();
-    fill(183, 68, 184, a2);
+    fill(217,102,255, a2);
     push();
     translate(this.px, this.py);
     beginShape();

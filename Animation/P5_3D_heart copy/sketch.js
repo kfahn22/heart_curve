@@ -10,18 +10,18 @@ let r = 1;
 const e = 2.71828;
 
 function setup() {
-  createCanvas(600, 600, WEBGL);
+  createCanvas(600, 600);
   angleMode(DEGREES);
 
-  for (let i = 0; i < 10; i++) {
-    hearts.push(new Heart(random(150),random(150), r));
+  for (let i = 0; i < 30; i++) {
+    hearts.push(new Heart(random(500),random(50), r));
   }
 }
 
 
 function draw() {
   background('#330033');
- // translate(width/2, height/2);
+  translate(0, height/2);
   noStroke();
   for (let k = 0; k < hearts.length; k++) {
     hearts[k].ctHeart();
