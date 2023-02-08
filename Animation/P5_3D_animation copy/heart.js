@@ -1,20 +1,11 @@
-let colors = [
-  [153, 0, 204],
-  [204, 51, 255],
-  [255, 51, 204],
-  [204, 0, 153],
-  [153, 0, 153],
-  [204, 102, 255]
-]
-
 class Heart {
   constructor(_px, _py, _r) {
     this.px = _px;
     this.py = _py;
     this.r = _r;
-    this.c = random(colors);
-    this.points = [];
     this.alpha = 255;
+    this.c = color(random(255), 0, random(255));
+    this.points = [];
   }
 
   ctHeart() {
@@ -29,32 +20,25 @@ class Heart {
       }
     }
   }
-  finished() {
-  return this.r = 5;
- //   return this.alpha < 0;
-  }
-
   update() {
-    this.r += 0.5;
-   // let a = map(this.r, 1, 6, 0, 255);
-    this.alpha -= 1;
+    if (this.r < 4) {
+      this.r += 0.1
+    }
   }
 
+  finished() {
+    this.alpha = 0;
+  }
   show(r) {
-    // let a1 = map(r, 1, 3, 0, 255);
-    // this.alpha = 255 - a1;
-    let from = color(217, 102, 255);
-    let to = color(134, 0, 179);
-    // let col1 = lerpColor(from, to, k/num);
-    // let col2 = lerpColor(to, from, k/num);
+    let a1 = map(this.r, 0.1, 3, 0, 255);
+    this.alpha = 255 - a1;
     noStroke();
-    fill(204, 102, 255, this.alpha);
+    fill(217, 102, 255, this.alpha);
     push();
     translate(this.px, this.py);
     beginShape();
     for (let v of this.points) {
       vertex(this.r * v.x, this.r * v.y);
-      //vertex(v.x, v.y);
     }
     endShape();
     pop();
