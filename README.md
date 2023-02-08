@@ -136,6 +136,8 @@ Martyn Steinrucken explains the algorithm to create this effect in his tutorial,
 I have tried several different approaches to rendering a 3D heart.  My most successful version is a little hacky and I got the idea from a failed attempt to ask chatGPT to render a 3D heart (it gave code for a rotating 2D heart -- most likely from Daniel Shiffman's Heart curve coding challenge.)  While it did not give me the answer I was hoping for, it did suggest a way to render the heart -- draw hearts with different combinations of r and z.  
 
 ![](./GIFS/3dheart.gif)
+- [P5 sketch](https://editor.p5js.org/kfahn/sketches/qUoH9VLg3)
+- [Code](https://github.com/kfahn22/heart_curve/tree/main/3D/P5_3D_heart_GIF)
 
 I also have a shader version.  I tried following along with Inigo Quilez's tutorial where he walks through the steps in general terms.  I obviously didn't quite get it right, however, becasue my code draws two hearts displaced from the origin. (If you move the mouse you will see that there are two of them rotating around the origin.)
 
