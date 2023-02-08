@@ -20,21 +20,20 @@ class Heart {
   }
 
   show(k, num) {
-    let per = map(k, 0, num/2, 1, 3);
+    let per = map(k, 0, num / 2, 1, 3);
     //let from = color(217,102,255);
-   // let from = color(255,102,163);
-   let from = color(255,179,179);
-    let to = color(134,0,179);
-    let col1 = lerpColor(from, to, k/num);
-    let col2 = lerpColor(to, from, k/num);
+    // let from = color(255,102,163);
+    let from = color(255, 179, 179);
+    let to = color(134, 0, 179);
+    let col1 = lerpColor(from, to, k / num);
+    let col2 = lerpColor(to, from, k / num);
     strokeWeight(per);
-    if (k < num/2)
-   {
-     stroke(col1, 100);
-   } else {
-     stroke(col2, 100);
-   }
-    if (k == 0 || k == num/2 || k == num) {
+    if (k < num / 2) {
+      stroke(col1, 100);
+    } else {
+      stroke(col2, 100);
+    }
+    if (k == 0 || k == num / 2 || k == num) {
       fill(col1);
     }
     push();
