@@ -6,28 +6,29 @@
 // https://editor.p5js.org/kfahn/sketches/SsZu1WV1G
 
 let hearts = [];
-let r = 2;
+let r = 1;
 const e = 2.71828;
-let angle = 0;
 
 function setup() {
   createCanvas(600, 600, WEBGL);
   angleMode(DEGREES);
 
-  for (let i = 0; i < 1; i++) {
-    hearts.push(new Heart(0, 0));
+  for (let i = 0; i < 10; i++) {
+    hearts.push(new Heart(random(150),random(150), r));
   }
 }
 
 
 function draw() {
   background('#330033');
+ // translate(width/2, height/2);
   noStroke();
   for (let k = 0; k < hearts.length; k++) {
-    hearts[k].ctHeart(r);
-    hearts[k].show(k, hearts.length);
+    hearts[k].ctHeart();
+    hearts[k].show(k, hearts.length, r);
   }
-  r = r + 50;
+  if (r < 3)
+ { r = r + 0.01;}
 }
 
 // function mousePressed() {
