@@ -10,7 +10,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(800, 450, WEBGL);
+  createCanvas(600, 600, WEBGL);
   pixelDensity(1);
  
 }

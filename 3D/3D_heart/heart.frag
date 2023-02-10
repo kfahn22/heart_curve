@@ -44,27 +44,39 @@ mat2 Rot(float a) {
     float s=sin(a), c=cos(a);
     return mat2(c, -s, s, c);
 }
-// Starting point for formulas from Inigo Quilez Youtube tutorial Making a Heart
-float Heart_3D( vec3 p ) {
+
+
+float Heart_3D ( vec3 p ) {
     vec3 q;
-    float r = 0.0; // 15.0
-    float r1 = 18.;
-    p.x = abs(p.x);
-    float d = length(p) - r;
-    //p.x = abs(p.x);
-    //p.y = 0.9* p.y - 0.8; //1.2
-   // p.y = 0.9* p.y; //1.2
-    p.y = 0.8* p.y; //1.2
-    //float k = (15.0 - abs(p.x))/r;
-    //float k = (20.0 - p.x)/r1;
-    float k = (20.0 - p.x)/20.;
-    //p.y = 7.0 + p.y - p.x * sqrt(k);
-    q.x = p.x;
-    q.y = 9.0 + 1.25 * p.y - 0.50 * q.x * sqrt(k);
-    q.z = p.z * (2.4-q.y/r1);
-    d -= length(q);
-    return d;
+    float r = 0.3 + 0.3*pow((0.5 + 0.5*sin(2.0*PI*iTime + p.y/25.0)), 4.0);
+   //p.z = 2.0*(p.z - p.y/15.0);
+    p.z = p.z - p.y/30.0;
+   // p.y =  0.2*p.y - abs(p.x)*sqrt((0.5-abs(p.x)/5.0));
+   
+    p.y = (1.1*p.y + abs(p.x)*sqrt((20.0 - abs(p.x))/15.0));
+    return length(p) - r;
 }
+// Starting point for formulas from Inigo Quilez Youtube tutorial Making a Heart
+// float Heart_3D( vec3 p ) {
+//     vec3 q;
+//     float r = 0.0; // 15.0
+//     float r1 = 18.;
+//     // p.x = abs(p.x);
+//     float d = length(p) - r;
+//     //p.x = abs(p.x);
+//     //p.y = 0.9* p.y - 0.8; //1.2
+//    // p.y = 0.9* p.y; //1.2
+//     p.y = 0.8* p.y; //1.2
+//     //float k = (15.0 - abs(p.x))/r;
+//     //float k = (20.0 - p.x)/r1;
+//     float k = (20.0 - p.x)/20.;
+//     //p.y = 7.0 + p.y - p.x * sqrt(k);
+//     q.x = p.x;
+//     q.y = 9.0 + 1.25 * p.y - 0.50 * q.x * sqrt(k);
+//     q.z = p.z * (2.4-q.y/r1);
+//     d -= length(q);
+//     return d;
+// }
 
 // Copy to edit!!
 // float Heart_3D( vec3 p ) {
@@ -135,11 +147,12 @@ void main( )
     vec3 col = vec3(0);
     
     vec3 ro = vec3(0, 3., -3);
-    ro.yz *= Rot(-m.y*3.14+1.);
-    ro.xz *= Rot(-m.x*6.2831);
+    // ro.yz *= Rot(-m.y*3.14+1.);
+    // ro.xz *= Rot(-m.x*6.2831);
+    // ro.xy *= Rot(-m.y*3.14+1.);
+    // ro.xz *= Rot(-m.x*6.2831);
     
-    
-    vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 0.5);
+    vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 3.);
     col = colorGradient(uv, PURPLE, PINK, 0.25);
   
     float d = RayMarch(ro, rd);
