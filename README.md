@@ -139,7 +139,7 @@ I have tried several different approaches to rendering a 3D heart.  My most succ
 - [P5 sketch](https://editor.p5js.org/kfahn/sketches/qUoH9VLg3)
 - [Code](https://github.com/kfahn22/heart_curve/tree/main/3D/P5_3D_heart_GIF)
 
-I also have a shader version.  I tried following along with Inigo Quilez's tutorial where he walks through the steps in general terms.  I obviously didn't quite get it right, however, becasue my code draws two hearts displaced from the origin. (If you move the mouse you will see that there are two of them rotating around the origin.)
+Here is a 3D shader version. This is my attempt to follow along with Inigo Quelez's [Making a heart with Maths](https://www.youtube.com/watch?v=aNR4n0i2ZlM) Youtube tutorial, which is rendered by starting with a sphere and adding distortions.  While I have managed to render a 3D heart, my version is not as nicely curved as his.
 
 <img class="img" src="images/3d_shader_heart.png" alt="3D shader heart" style=" display: block;
     margin-left: auto;

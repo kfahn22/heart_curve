@@ -15,6 +15,13 @@ function setup() {
  
 }
 
+function keyPressed() {
+  // This is approximately the number of seconds for a full cycle of the animation
+  if (key === 's') {
+    saveGif('3dheart', 60);
+  }
+}
+
 function draw() { 
       background(0);
      

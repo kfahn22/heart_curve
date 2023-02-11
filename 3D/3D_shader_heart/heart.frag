@@ -58,7 +58,7 @@ mat2 Rot(float a) {
 // p.z = 2.0*(p.z - p.y/15.0);
 // p.y = 4.0 + 1.2*p.y - abs(p.x)*sqrt((20.0-abs(p.x)/15.0));
 float Heart_3D ( vec3 p ) {
-    float r = 0.2 + 0.2*pow((0.5 + 0.5*sin(1.2*PI*iTime + p.y/25.0)), 3.0);
+    float r = 0.25 + 0.2*pow((0.5 + 0.5*sin(1.2*PI + p.y/25.0)), 3.0);
     p.z = 1.0*(p.z - p.y/15.0);
     p.y = 0.9*p.y - 1.3*abs(p.x)*sqrt((25.0 - abs(p.x))/35.0);
     return length(p) - r;
@@ -126,7 +126,7 @@ void main( )
         // col = mix(RED, vec3(dif), 0.3);      
         //col += Lighting( uv, p, n, col, rd);
 
-        // lighting technique from Inigo Quelez Livecoding a temple
+        // Lighting technique from Inigo Quelez Livecoding a temple
         vec3 sunlt = normalize(vec3(0.1, 0.8, 0.1));
         float dif = clamp( dot( n, sunlt), 0.0, 1.0);
         float amb = (0.5 + 0.5*n.y);

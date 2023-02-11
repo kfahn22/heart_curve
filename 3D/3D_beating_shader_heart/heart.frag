@@ -1,13 +1,8 @@
-// This file renders a 3d heart
-// The code for the superformula and supershape3D are based primarily on Daniel Shiffman's 3d Supershape Coding CHallenge
-
-// This method is based on a youtube tutorial by The Art of Code  Martijn Steinrucken
-// How to turn your 2d fractal into 3d!
-// https://www.youtube.com/watch?v=__dSLc7-Cpo
-// https://www.youtube.com/c/TheArtofCodeIsCool
-
 // Base code based on the Ray Marching Starting Point from the Art of Code
 // https://www.youtube.com/watch?v=PGtv-dBi2wE
+
+// Heart code based on Making a heart with Maths Youtube tutorial by Inigo Quilez
+// https://www.youtube.com/watch?v=aNR4n0i2ZlM
 
 #ifdef GL_ES
 precision mediump float;
@@ -28,10 +23,18 @@ uniform float iFrame;
 
 // Add color
 // The uvs are floating point with a range of [0.0,1.0] so we normalize by dividing by 255.
-#define PURPLE vec3(83, 29,109) / 255.
-#define RED vec3(191, 18, 97) / 255.
+#define LTPURPLE vec3(255,153,255) / 255.
+#define PURPLE vec3(153, 0, 153) / 255.
+#define DKPURPLE vec3(102,0,102) / 255.
+#define RED vec3(179, 0, 0) / 255.
 #define RASPBERRY vec3(236,1,90) / 255.
-#define PINK vec3(236,203,217) / 255.
+#define PINK vec3(236,102,160) / 255.
+#define DKROSE vec3(195, 51, 128) / 255.
+#define MAROON vec3(177,0,0) / 255.
+#define BLACK vec3(26,0,26) / 255.
+#define LTLILAC vec3(237, 207, 233) / 255.
+#define LILAC vec3(204,152,222) / 255.
+
 
 vec3 colorGradient(vec2 uv, vec3 col1, vec3 col2, float m) {
   float k = uv.y*m + m;
@@ -45,15 +48,15 @@ mat2 Rot(float a) {
     return mat2(c, -s, s, c);
 }
 
-
+//  Starting point for equations from Inigo Quelez
+//float r = 15.0 + 3.0*pow((0.5 + 0.5*sin(1.5*PI*iTime + p.y/25.0)), 4.0);
+// p.z = 2.0*(p.z - p.y/15.0);
+// p.y = 4.0 + 1.2*p.y - abs(p.x)*sqrt((20.0-abs(p.x)/15.0));
 float Heart_3D ( vec3 p ) {
-    vec3 q;
-    float r = 0.2 + 0.2*pow((0.5 + 0.5*sin(1.5*PI*iTime + p.y/25.0)), 4.0);
-   //p.z = 2.0*(p.z - p.y/15.0);
-    p.z = 0.8*(p.z - p.y/20.0);
-   // p.y =  0.2*p.y - abs(p.x)*sqrt((0.5-abs(p.x)/5.0));
-   
-    p.y = (1.0*p.y - abs(p.x)*sqrt((20.0 - abs(p.x))/15.0));
+    // we make the heart beat by adding iTime to the term inside the sin function
+    float r = 0.2 + 0.2*pow((0.5 + 0.5*sin(1.2*PI*iTime + p.y/25.0)), 3.0);
+    p.z = 1.0*(p.z - p.y/15.0);
+    p.y = 0.9*p.y - 1.3*abs(p.x)*sqrt((25.0 - abs(p.x))/35.0);
     return length(p) - r;
 }
 
@@ -107,21 +110,28 @@ void main( )
     // ro.xz *= Rot(-m.x*6.2831);
    
     vec3 rd = GetRayDir(uv, ro, vec3(0,0,0), 3.);
-   // vec3 rd = GetRayDir(uv* Rot(PI), ro, vec3(0,0,0), 3.);
-    col = colorGradient(uv, PURPLE, PINK, 0.25);
-  
+
+    col = LILAC;
     float d = RayMarch(ro, rd);
 
     if(d<MAX_DIST) {
         vec3 p = ro + rd * d;
         vec3 n = GetNormal(p);
         vec3 r = reflect(rd, n);
+        // float dif = dot(n, normalize(vec3(1,2,3)))*.5+.5;
+        // col = mix(RED, vec3(dif), 0.3);      
+        //col += Lighting( uv, p, n, col, rd);
 
-        float dif = dot(n, normalize(vec3(1,2,3)))*.5+.5;
-        vec3 c = vec3(dif);
-         
-        float spec = pow(max(0.0, r.y), 0.5); // add specular highlight
-        col = mix(RASPBERRY, vec3(dif), 0.5);//+spec;
+        // Lighting technique from Inigo Quelez Livecoding a temple
+        vec3 sunlt = normalize(vec3(0.1, 0.8, 0.1));
+        float dif = clamp( dot( n, sunlt), 0.0, 1.0);
+        float amb = (0.5 + 0.5*n.y);
+        col = mix(PURPLE, vec3(dif), 0.15);      
+        col += amb*1.0*DKROSE;
+        col += dif*0.1*vec3(0.8, 0.5, 0.8);
+
+       float spec = pow(max(0.0, r.y), 0.5); // add specular highlight
+       col += 0.05*spec*LTLILAC;
       
     } 
        
