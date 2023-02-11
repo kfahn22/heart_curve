@@ -14,8 +14,8 @@ Daniel used the following equations to render a heart curve.
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-- [Coding Train P5 sketch](https://editor.p5js.org/codingtrain/sketches/egvieHyt0)
-- [Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
+[Coding Train P5 sketch](https://editor.p5js.org/codingtrain/sketches/egvieHyt0)  
+[Coding Train Heart Curve Coding Challenge](https://thecodingtrain.com/challenges/134-heart-curve)
 
 
 The equations for the first and second heart curves are from [Mathematische-Basteleien](http://www.mathematische-basteleien.de/heart.html), while the equations for heart curves 3 and 4 are from [MathWorld](https://mathworld.wolfram.com/HeartCurve.html).  All four hearts are added as classes in this [p5 sketch](https://editor.p5js.org/kfahn/sketches/xNdg0UUI6).  Heart curve 3 is the heart that will render and the others are commented out. 
@@ -33,8 +33,8 @@ In the first heart curve, the equations draw a petal shape.  I rendered the hear
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/TaLiYG9ed)
-- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_1)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/TaLiYG9ed)  
+[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_1)
 
 ## Heart curve 2
 
@@ -48,8 +48,8 @@ The second curve is tall and skinny, and renders a little slowly.
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/QIxvo0IsR)
-- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_2)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/QIxvo0IsR)  
+[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_2)
 
 ## Heart curve 3
 
@@ -63,8 +63,8 @@ This one is my favorite.  Just a typical heart shape.
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/jypBSD0PX)
-- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_3)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/jypBSD0PX)  
+[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_3)
 
 ## Heart curve 4
 
@@ -78,8 +78,8 @@ This heart is very curvy.  It would probably look a little  better with a deeper
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/58a49hodn)
-- [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_4)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/58a49hodn)  
+[Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_4)
 
 # Heart curves rendered with a shader
 
@@ -91,8 +91,8 @@ There are many ways to render a heart in a shader. Inigo Quelez has a signed dis
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/15Wj_4RYR)
-- [Code](https://github.com/kfahn22/heart_curve/tree/main/shader_heart_sketches/heart_sketch)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/15Wj_4RYR)  
+[Code](https://github.com/kfahn22/heart_curve/tree/main/shader_heart_sketches/heart_sketch)
 
 ## Another shader version.
 
@@ -102,8 +102,8 @@ The trick to getting this one to render was using the clamp function to limit th
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/sxV-8QgVn)
-- [Code](https://github.com/kfahn22/heart_curve/tree/main/shader_heart_sketches/heart_sketch2)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/sxV-8QgVn)    
+[Code](https://github.com/kfahn22/heart_curve/tree/main/shader_heart_sketches/heart_sketch2)
 
 ## Here is the version from [Making a Heart in ShaderToy](https://www.youtube.com/watch?v=dXyPOLf2MbU) tutorial by The Art of Code.
 
@@ -119,8 +119,8 @@ Martyn Steinrucken explains the algorithm to create this effect in his tutorial,
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/CUZdtTg6L)
-- [Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/heart_animation)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/CUZdtTg6L)    
+[Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/heart_animation)
 
 ## Another animation with a different heart curve
 
@@ -128,16 +128,16 @@ Martyn Steinrucken explains the algorithm to create this effect in his tutorial,
     margin-left: auto;
     margin-right: auto;" width="800" height="500">
 
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/vtP85qLbB)  
-- [Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/Heart_animation_2)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/vtP85qLbB)     
+[Code](https://github.com/kfahn22/heart_curve/tree/main/Animation/Heart_animation_2)
 
 ## 3D Heart
 
 I have tried several different approaches to rendering a 3D heart.  My most successful version is a little hacky and I got the idea from a failed attempt to ask chatGPT to render a 3D heart (it gave code for a rotating 2D heart -- most likely from Daniel Shiffman's Heart curve coding challenge.)  While it did not give me the answer I was hoping for, it did suggest a way to render the heart -- draw hearts with different combinations of r and z.  
 
 ![](./GIFS/3dheart.gif)
-- [P5 sketch](https://editor.p5js.org/kfahn/sketches/qUoH9VLg3)
-- [Code](https://github.com/kfahn22/heart_curve/tree/main/3D/P5_3D_heart_GIF)
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/qUoH9VLg3)  
+[Code](https://github.com/kfahn22/heart_curve/tree/main/3D/P5_3D_heart_GIF)
 
 Here is a 3D shader version. This is my attempt to follow along with Inigo Quelez's [Making a heart with Maths](https://www.youtube.com/watch?v=aNR4n0i2ZlM) Youtube tutorial, which is rendered by starting with a sphere and adding distortions.  While I have managed to render a 3D heart, my version is not as nicely curved as his.
 
