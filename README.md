@@ -76,7 +76,7 @@ This heart is very curvy.  It would probably look a little  better with a deeper
 
 <img class="img" src="images/heart_4.jpg" alt="Heart Curve 4" style=" display: block;
     margin-left: auto;
-    margin-right: auto;" width="800" height="500">
+    margin-right: auto;" width="800" height="500">  
 
 [P5 sketch](https://editor.p5js.org/kfahn/sketches/58a49hodn)  
 [Code](https://github.com/kfahn22/heart_curve/tree/main/P5_heart_sketches/Heart_curve_4)
@@ -135,7 +135,7 @@ Martyn Steinrucken explains the algorithm to create this effect in his tutorial,
 
 I have tried several different approaches to rendering a 3D heart.  My most successful version is a little hacky and I got the idea from a failed attempt to ask chatGPT to render a 3D heart (it gave code for a rotating 2D heart -- most likely from Daniel Shiffman's Heart curve coding challenge.)  While it did not give me the answer I was hoping for, it did suggest a way to render the heart -- draw hearts with different combinations of r and z.  
 
-![](./GIFS/3dheart.gif)
+![](./GIFS/3dheart.gif)  
 [P5 sketch](https://editor.p5js.org/kfahn/sketches/qUoH9VLg3)  
 [Code](https://github.com/kfahn22/heart_curve/tree/main/3D/P5_3D_heart_GIF)
 
@@ -143,7 +143,7 @@ Here is a 3D shader version. This is my attempt to follow along with Inigo Quele
 
 <img class="img" src="images/3d_shader_heart.png" alt="3D shader heart" style=" display: block;
     margin-left: auto;
-    margin-right: auto;" width="400" height="400">
+    margin-right: auto;" width="400" height="400">  
 
-[P5 sketch](https://editor.p5js.org/kfahn/sketches/tPl86Ecgl)  
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/tPl86Ecgl)    
 [Code](https://github.com/kfahn22/heart_curve/tree/main/3D/3D_shader_heart)
