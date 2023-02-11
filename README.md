@@ -144,3 +144,6 @@ Here is a 3D shader version. This is my attempt to follow along with Inigo Quele
 <img class="img" src="images/3d_shader_heart.png" alt="3D shader heart" style=" display: block;
     margin-left: auto;
     margin-right: auto;" width="400" height="400">
+
+[P5 sketch](https://editor.p5js.org/kfahn/sketches/tPl86Ecgl)
+[Code](https://github.com/kfahn22/heart_curve/tree/main/3D/3D_shader_heart)
